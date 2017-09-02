@@ -12,4 +12,8 @@ class noodleCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var noodlePicture: UIImageView!
     @IBOutlet weak var noodleName: UILabel!
+    @IBOutlet weak var noodleQunatity: UILabel!
+
+    @IBAction func plusMinusNoodle(_ sender: Any) {
+    }
 }

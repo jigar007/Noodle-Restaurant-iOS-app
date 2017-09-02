@@ -11,9 +11,16 @@ import UIKit
 
 class FirstViewController: UIViewController {
 
+
+    
+//    override func viewDidAppear(){
+//        self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)
+//
+//    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let url = URL(string: "http://139.59.96.68:8000/stock")
         
         URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
