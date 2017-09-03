@@ -28,7 +28,6 @@ class noodleCollectionViewCell: UICollectionViewCell {
         
     }
     
-    
     @IBAction func noodleMinus(_ sender: Any) {
         
         var count:Int = Int(noodleQunatity.text!)!
@@ -48,5 +47,4 @@ class noodleCollectionViewCell: UICollectionViewCell {
         }
         clickComplition!(count, tag)
     }
-    
 }

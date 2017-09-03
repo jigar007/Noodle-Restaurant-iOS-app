@@ -10,18 +10,22 @@ import UIKit
 
 class SecondViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
 
-    var companyNamesList = ["vsoIndomie","vsoNongshim","vsosamyang","vsoSedap"]
+
+    var companyNamesList = [String]()
+    var selectedName : String = ""
+    
     var navBar: UINavigationBar = UINavigationBar()
 
     @IBOutlet weak var companyList: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        for item in InfoDetail.sharedInstant.objItem.mie{
-        //            print(item.brand!)
-        //        }
-        //
+     
+        var companys = [String]()
+        for item in InfoDetail.sharedInstant.objItem.mie {
+            companys.append(item.brand)
+        }
+        companyNamesList = Array(Set(companys))
         
         // For Button and title in navigation bar
         self.title = "PILIH MIE INSTAN"
@@ -62,7 +66,7 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
-    
+
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return companyNamesList.count
@@ -72,16 +76,19 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"companyLogoCell", for: indexPath) as! CompanyCollectionViewCell
-            
+        
+        
+            if ((UIImage(named: companyNamesList[indexPath.row])) != nil){
             cell.company.image = UIImage(named: companyNamesList[indexPath.row])
-            
+                }else{
+                cell.company.image = UIImage(named: "Default")
+                }
             return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "secondToThird", sender: self)
-        print(indexPath)
-
+       performSegue(withIdentifier: "secondToThird", sender: self)
+        InfoDetail.selectedName = companyNamesList[indexPath.row]
     }
-    
+
 }

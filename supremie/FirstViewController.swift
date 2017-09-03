@@ -11,13 +11,6 @@ import UIKit
 
 class FirstViewController: UIViewController {
 
-
-    
-//    override func viewDidAppear(){
-//        self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)
-//
-//    }Command /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc failed with exit code 1
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,16 +21,9 @@ class FirstViewController: UIViewController {
             
             do {
 
-                
                 let json = try JSONSerialization.jsonObject(with: data)as? [String:Any]
                 
                 InfoDetail.sharedInstant.objItem = Mie(fromDictionary: json!)
-                
-                
-
-//                
-//                UserDefaults.standard.set(mie, forKey: "mie")
-                
                 
             } catch let error as NSError {
                 print(error)
@@ -45,18 +31,8 @@ class FirstViewController: UIViewController {
                 
             }
         }).resume()
-        
-//        let arr = UserDefaults.standard.string(forKey: "json")
-//        print(arr!)
-
     }
  
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-        
-    }
     
     
     // MARK: for hidding navigation bar in first screen

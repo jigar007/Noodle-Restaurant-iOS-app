@@ -10,7 +10,7 @@ import UIKit
 
 class chilliViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource  {
     
-    var noodleList = ["vsoAyamBawang","vsoCabeIjo","vsoGoreng","vsoKariAyam","vsoRendang","vsoSotoMie"]
+    var noodleList = ["Level-0","Level-1","Level-2","Level-3","Level-4"]
     var selectedIndexPath:Int = 0
     var selectedCount:Int = 0
     
@@ -65,22 +65,12 @@ class chilliViewController: UIViewController,UICollectionViewDelegate, UICollect
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"chilliCell", for: indexPath) as! chilliCollectionViewCell
         
         cell.chilliPicture.image = UIImage(named: noodleList[indexPath.row])
-        cell.chilliName.text =  noodleList[indexPath.row]
-        
-        if indexPath.row == self.selectedIndexPath{
-            cell.chilliQunatity.text = "\(self.selectedCount)"
-        }else{
-            cell.chilliQunatity.text = "\(0)"
-        }
-        
-        cell.tag = indexPath.row
-        cell.clickComplition = { (count, index) in
-            self.selectedIndexPath = index
-            self.selectedCount = count
-            collectionView.reloadData()
-        }
+
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "chilliToDrinks", sender: self)
+    }
 
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class drinksViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource  {
 
-    var noodleList = ["vsoAyamBawang","vsoCabeIjo","vsoGoreng","vsoKariAyam","vsoRendang","vsoSotoMie"]
+    var drinksList = [String]()
     var selectedIndexPath:Int = 0
     var selectedCount:Int = 0
     
@@ -18,6 +18,14 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        for item in InfoDetail.sharedInstant.objItem.drinks
+        {
+            if item.stock>0 {
+                drinksList.append(item.brand+" "+item.flavour)
+            }
+        }
+        print(drinksList)
+        
         // For Button and title in navigation bar
         self.title = "Pilih Minuman & ES"
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
@@ -57,15 +65,20 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return noodleList.count
+        return drinksList.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"drinksCell", for: indexPath) as! drinksCollectionViewCell
         
-        cell.drinksPicture.image = UIImage(named: noodleList[indexPath.row])
-        cell.drinksName.text =  noodleList[indexPath.row]
+        if ((UIImage(named: drinksList[indexPath.row])) != nil){
+            cell.drinksPicture.image = UIImage(named: drinksList[indexPath.row])
+        }else{
+            cell.drinksPicture.image = UIImage(named: "Default")
+        }
+        
+        cell.drinksName.text =  drinksList[indexPath.row]
         
         if indexPath.row == self.selectedIndexPath{
             cell.drinksQunatity.text = "\(self.selectedCount)"

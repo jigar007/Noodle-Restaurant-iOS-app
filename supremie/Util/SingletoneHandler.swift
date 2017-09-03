@@ -11,6 +11,7 @@ import Foundation
 class InfoDetail {
     
     static let sharedInstant:InfoDetail = InfoDetail()
+    static var selectedName:String = ""
     var objItem:Mie!
     
 }

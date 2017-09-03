@@ -10,7 +10,7 @@ import UIKit
 
 class ForthViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
  
-    var noodleList = ["vsoAyamBawang","vsoCabeIjo","vsoGoreng","vsoKariAyam","vsoRendang","vsoSotoMie"]
+    var toppingsList = ["vsoAyamBawang","vsoCabeIjo","vsoGoreng","vsoKariAyam","vsoRendang","vsoSotoMie"]
 
     var selectedIndexPath:Int = 0
     var selectedCount:Int = 0
@@ -19,6 +19,13 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for item in InfoDetail.sharedInstant.objItem.toppings
+        {
+            if item.stock>0 {
+                toppingsList.append(item.name)
+            }
+        }
         
         // For Button and title in navigation bar
         self.title = "Pilih Topping"
@@ -59,15 +66,24 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
     }
         
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return noodleList.count
+        return toppingsList.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"toppingsCell", for: indexPath) as! toppingsCollectionViewCell
         
-        cell.toppingsPicture.image = UIImage(named: noodleList[indexPath.row])
-        cell.toppingsName.text =  noodleList[indexPath.row]
+        cell.toppingsPicture.image = UIImage(named: toppingsList[indexPath.row])
+        
+        if ((UIImage(named: toppingsList[indexPath.row])) != nil){
+            cell.toppingsPicture.image = UIImage(named: toppingsList[indexPath.row])
+        }else{
+            cell.toppingsPicture.image = UIImage(named: "Default")
+        }
+        
+        
+        
+        cell.toppingsName.text =  toppingsList[indexPath.row]
         
         if indexPath.row == self.selectedIndexPath{
             cell.toppingsQuantity.text = "\(self.selectedCount)"

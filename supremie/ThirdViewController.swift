@@ -10,7 +10,7 @@ import UIKit
 
 class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource
 {
-    var noodleList = ["vsoAyamBawang","vsoCabeIjo","vsoGoreng","vsoKariAyam","vsoRendang","vsoSotoMie"]
+    var noodleList = [String]()
     var selectedIndexPath:Int = 0
     var selectedCount:Int = 0
     
@@ -19,7 +19,13 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        for item in InfoDetail.sharedInstant.objItem.mie
+        {
+            if item.stock>0 && item.brand ==  InfoDetail.selectedName {
+                noodleList.append(item.flavour)
+            }
+        }
+
         // For Button and title in navigation bar
         self.title = "Pilih Rasa"
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
@@ -66,7 +72,12 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"noodleCell", for: indexPath) as! noodleCollectionViewCell
         
-        cell.noodlePicture.image = UIImage(named: noodleList[indexPath.row])
+        if ((UIImage(named: noodleList[indexPath.row])) != nil){
+            cell.noodlePicture.image = UIImage(named: noodleList[indexPath.row])
+        }else{
+            cell.noodlePicture.image = UIImage(named: "Default")
+        }
+        
         cell.noodleName.text =  noodleList[indexPath.row]
         
         if indexPath.row == self.selectedIndexPath{
@@ -84,8 +95,6 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
             
             self.selectedIndexPath = index
             self.selectedCount = count
-            print("count",count)
-            print("index",index)
             
             collectionView.reloadData()
 

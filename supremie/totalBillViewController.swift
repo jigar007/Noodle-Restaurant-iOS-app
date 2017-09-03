@@ -31,7 +31,4 @@ class totalBillViewController: UIViewController {
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
-    
-
-
 }
