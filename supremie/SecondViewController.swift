@@ -16,6 +16,11 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
     
     override func viewDidLoad() {
         
+        for item in InfoDetail.sharedInstant.objItem.mie{
+            print(item.brand!)
+        }
+        
+        
         super.viewDidLoad()
         
         // For Button and title in navigation bar

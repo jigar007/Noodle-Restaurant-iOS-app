@@ -248,7 +248,7 @@
                                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </state>
                                                                     <connections>
-                                                                        <action selector="plusMinusNoodle:" destination="C6J-bL-DI8" eventType="touchUpInside" id="hVu-kK-gGY"/>
+                                                                        <action selector="noodleMinus:" destination="C6J-bL-DI8" eventType="touchUpInside" id="LE7-Cs-ty5"/>
                                                                     </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W94-q7-0U8">
@@ -271,7 +271,7 @@
                                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </state>
                                                                     <connections>
-                                                                        <action selector="plusMinusNoodle:" destination="C6J-bL-DI8" eventType="touchUpInside" id="axI-m9-waw"/>
+                                                                        <action selector="noodlePlus:" destination="C6J-bL-DI8" eventType="touchUpInside" id="kqE-Ly-UZ7"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -990,7 +990,8 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAW-hE-C6Y">
                                                 <rect key="frame" x="87" y="197" width="281" height="191"/>
-                                                <string key="text">TERIMAKASIH</string>
+                                                <string key="text">TERIMA
+KASIH</string>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="80"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

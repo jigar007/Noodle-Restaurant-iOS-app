@@ -72,6 +72,12 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         cell.noodlePicture.image = UIImage(named: noodleList[indexPath.row])
         cell.noodleName.text =  noodleList[indexPath.row]
         print(noodleList[indexPath.row])
+        cell.clickComplition = { (count, index) in
+            
+            print(count)
+            print(index)
+        }
+        
         return cell
     }
 }

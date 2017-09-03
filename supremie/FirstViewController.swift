@@ -16,7 +16,7 @@ class FirstViewController: UIViewController {
 //    override func viewDidAppear(){
 //        self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)
 //
-//    }
+//    }Command /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc failed with exit code 1
 
     
     override func viewDidLoad() {
@@ -28,25 +28,13 @@ class FirstViewController: UIViewController {
             
             do {
 
+                
                 let json = try JSONSerialization.jsonObject(with: data)as? [String:Any]
-                print(json!)
+                
+                InfoDetail.sharedInstant.objItem = Mie(fromDictionary: json!)
                 
                 
-                let mie = json?["mie"] as? [[String: Any]] ?? []
-                print(mie)
-                
-                
-//                let toppings = json["toppings"] as? [[String: Any]] ?? []
-//                let drinks = json["drinks"] as? [[String: Any]] ?? []
-//                
-//                let dict=[]
-//                
-//                for each in mie{
-//                    dict.append(each)
-//                }
-//                print(dict)
-//                for each in mie[0]{
-//                    print(each)}
+
 //                
 //                UserDefaults.standard.set(mie, forKey: "mie")
                 
