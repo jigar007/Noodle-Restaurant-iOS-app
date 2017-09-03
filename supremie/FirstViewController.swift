@@ -43,13 +43,13 @@ class FirstViewController: UIViewController {
     @IBAction func quickOrder(_ sender: Any) {
         
         performSegue(withIdentifier: "firstToSecond", sender: self)
-        InfoDetail.sharedInstant.JSONItem.diningMethod = "makan disini"
+//        InfoDetail.sharedInstant.JSONItem.diningMethod = "makan disini"
     }
     
     @IBAction func takeAway(_ sender: Any) {
         
         performSegue(withIdentifier: "firstToSecond", sender: self)
-        InfoDetail.sharedInstant.JSONItem.diningMethod = "bungkus"
+//        InfoDetail.sharedInstant.JSONItem.diningMethod = "bungkus"
     }
 
 }

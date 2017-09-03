@@ -11,7 +11,7 @@ import Foundation
 class Order : NSObject, NSCoding{
 
 	var diningMethod : String!
-	var drinks : [Drink]!
+	var drinks : [JSONDrink]!
 	var mies : [My]!
 	var paymentMethod : String!
 	var totalPrice : Int!
@@ -22,10 +22,10 @@ class Order : NSObject, NSCoding{
 	 */
 	init(fromDictionary dictionary: [String:Any]){
 		diningMethod = dictionary["dining_method"] as? String
-		drinks = [Drink]()
+		drinks = [JSONDrink]()
 		if let drinksArray = dictionary["drinks"] as? [[String:Any]]{
 			for dic in drinksArray{
-				let value = Drink(fromDictionary: dic)
+				let value = JSONDrink(fromDictionary: dic)
 				drinks.append(value)
 			}
 		}
@@ -79,7 +79,7 @@ class Order : NSObject, NSCoding{
     @objc required init(coder aDecoder: NSCoder)
 	{
          diningMethod = aDecoder.decodeObject(forKey: "dining_method") as? String
-         drinks = aDecoder.decodeObject(forKey :"drinks") as? [Drink]
+         drinks = aDecoder.decodeObject(forKey :"drinks") as? [JSONDrink]
          mies = aDecoder.decodeObject(forKey :"mies") as? [My]
          paymentMethod = aDecoder.decodeObject(forKey: "payment_method") as? String
          totalPrice = aDecoder.decodeObject(forKey: "total_price") as? Int
