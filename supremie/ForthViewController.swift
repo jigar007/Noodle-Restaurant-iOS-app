@@ -11,13 +11,17 @@ import UIKit
 class ForthViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
  
     var noodleList = ["vsoAyamBawang","vsoCabeIjo","vsoGoreng","vsoKariAyam","vsoRendang","vsoSotoMie"]
+
+    var selectedIndexPath:Int = 0
+    var selectedCount:Int = 0
+    
+    @IBOutlet weak var toppingsCollectionView: UICollectionView!
     
     override func viewDidLoad() {
-        print("hello")
+        super.viewDidLoad()
         
         // For Button and title in navigation bar
         self.title = "Pilih Topping"
-        
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
@@ -30,7 +34,7 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         let barButton = UIBarButtonItem(customView: btnLeftMenu)
         self.navigationItem.leftBarButtonItem = barButton
         
-        
+        // For making collection view device independent
         var screenSize: CGRect!
         var screenWidth: CGFloat!
         var screenHeight: CGFloat!
@@ -47,18 +51,13 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         layout.minimumLineSpacing = 8
         toppingsCollectionView.collectionViewLayout = layout
         
-        super.viewDidLoad()
-        
     }
     
-    
-    @IBOutlet weak var toppingsCollectionView: UICollectionView!
   
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
-    
-    
+        
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return noodleList.count
     }
@@ -67,12 +66,21 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"toppingsCell", for: indexPath) as! toppingsCollectionViewCell
         
-        
         cell.toppingsPicture.image = UIImage(named: noodleList[indexPath.row])
-        
         cell.toppingsName.text =  noodleList[indexPath.row]
         
-        print(noodleList[indexPath.row])
+        if indexPath.row == self.selectedIndexPath{
+            cell.toppingsQuantity.text = "\(self.selectedCount)"
+        }else{
+            cell.toppingsQuantity.text = "\(0)"
+        }
+        
+        cell.tag = indexPath.row
+        cell.clickComplition = { (count, index) in
+            self.selectedIndexPath = index
+            self.selectedCount = count
+            collectionView.reloadData()
+        }
         return cell
     }
 }

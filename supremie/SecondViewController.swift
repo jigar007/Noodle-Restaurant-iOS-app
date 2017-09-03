@@ -13,32 +13,23 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
     var companyNamesList = ["vsoIndomie","vsoNongshim","vsosamyang","vsoSedap"]
     var navBar: UINavigationBar = UINavigationBar()
 
+    @IBOutlet weak var companyList: UICollectionView!
     
     override func viewDidLoad() {
-        
-        for item in InfoDetail.sharedInstant.objItem.mie{
-            print(item.brand!)
-        }
-        
-        
         super.viewDidLoad()
         
+        //        for item in InfoDetail.sharedInstant.objItem.mie{
+        //            print(item.brand!)
+        //        }
+        //
+        
         // For Button and title in navigation bar
-        self.navigationController?.navigationBar.barTintColor = UIColor.red
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 100.0)
-        
         self.title = "PILIH MIE INSTAN"
-        
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-       
         
-//        let firstFrame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: 100)
-//        let firstLabel = UILabel(frame: firstFrame)
-//        firstLabel.font = UIFont(name: firstLabel.font.fontName, size: 30)
-//
-//        self.navigationController?.navigationBar.addSubview(firstLabel)
-
+        self.navigationController?.navigationBar.barTintColor = UIColor.red
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 100.0)
         
         let btnLeftMenu: UIButton = UIButton()
         
@@ -48,14 +39,8 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
         btnLeftMenu.addTarget(self, action: #selector(SecondViewController.onClcikBack), for: UIControlEvents.touchUpInside)
         let barButton = UIBarButtonItem(customView: btnLeftMenu)
         self.navigationItem.leftBarButtonItem = barButton
-    
         
-
-        
-        companyList.dataSource=self
-        companyList.delegate=self
-        
-        
+        // For making collection view device independent
         var screenSize: CGRect!
         var screenWidth: CGFloat!
         var screenHeight: CGFloat!
@@ -71,16 +56,12 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8
         companyList.collectionViewLayout = layout
+        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
-    
-    @IBOutlet weak var companyList: UICollectionView!
     
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
@@ -96,6 +77,7 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
             
             return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "secondToThird", sender: self)
         print(indexPath)

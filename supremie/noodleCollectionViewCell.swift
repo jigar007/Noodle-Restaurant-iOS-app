@@ -15,12 +15,15 @@ class noodleCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var noodleQunatity: UILabel!
 
     var clickComplition : ((_ totalCount:Int,_ cellIndex:Int) -> Void)? = nil
-    var count = 0
     
     @IBAction func noodlePlus(_ sender: Any) {
+       
+        var count:Int = Int(noodleQunatity.text!)!
+        
         if count < 3 {
             count = count + 1
-            updateStatus()
+            noodleQunatity.text = "\(count)"
+            updateStatus(count: count)
         }
         
     }
@@ -28,19 +31,21 @@ class noodleCollectionViewCell: UICollectionViewCell {
     
     @IBAction func noodleMinus(_ sender: Any) {
         
+        var count:Int = Int(noodleQunatity.text!)!
+
         if count > 0 {
             count = count - 1
-            updateStatus()
+            noodleQunatity.text = "\(count)"
+            updateStatus(count: count)
+       
         }
         
     }
-    private func updateStatus() {
-        noodleQunatity.text = "\(count)"
+    private func updateStatus(count: Int) {
         
         guard clickComplition != nil else {
             return
         }
-        
         clickComplition!(count, tag)
     }
     

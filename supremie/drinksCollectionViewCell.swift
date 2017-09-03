@@ -9,5 +9,40 @@
 import UIKit
 
 class drinksCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var drinksPicture: UIImageView!
+    @IBOutlet weak var drinksName: UILabel!
+    @IBOutlet weak var drinksQunatity: UILabel!
     
+    var clickComplition : ((_ totalCount:Int,_ cellIndex:Int) -> Void)? = nil
+    
+    @IBAction func drinksPlus(_ sender: Any) {
+        
+        var count:Int = Int(drinksQunatity.text!)!
+        
+        if count < 3 {
+            count = count + 1
+            drinksQunatity.text = "\(count)"
+            updateStatus(count: count)
+        }
+    }
+    
+    @IBAction func drinksMinus(_ sender: Any) {
+        
+        var count:Int = Int(drinksQunatity.text!)!
+        
+        if count > 0 {
+            count = count - 1
+            drinksQunatity.text = "\(count)"
+            updateStatus(count: count)
+            
+        }
+        
+    }
+    private func updateStatus(count: Int) {
+        
+        guard clickComplition != nil else {
+            return
+        }
+        clickComplition!(count, tag)
+    }
 }

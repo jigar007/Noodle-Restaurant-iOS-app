@@ -13,23 +13,25 @@ class totalBillViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // For Button and title in navigation bar
+        self.title = "Review Pesanan"
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+        
+        let btnLeftMenu: UIButton = UIButton()
+        btnLeftMenu.setImage(UIImage(named: "back"), for: UIControlState())
+        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 19, height: 49)
+        btnLeftMenu.addTarget(self, action: #selector(totalBillViewController.onClcikBack), for: UIControlEvents.touchUpInside)
+        
+        btnLeftMenu.titleEdgeInsets = UIEdgeInsetsMake(10,10,10,10)
+        let barButton = UIBarButtonItem(customView: btnLeftMenu)
+        self.navigationItem.leftBarButtonItem = barButton
+    
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func onClcikBack() {
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
