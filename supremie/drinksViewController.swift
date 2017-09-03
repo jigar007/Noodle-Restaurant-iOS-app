@@ -11,9 +11,7 @@ import UIKit
 class drinksViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource  {
 
     var drinksList = [String]()
-    var selectedIndexPath:Int = 0
-    var selectedCount:Int = 0
-    
+
     @IBOutlet weak var drinksCiewController: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +22,6 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
                 drinksList.append(item.brand+" "+item.flavour)
             }
         }
-        print(drinksList)
         
         // For Button and title in navigation bar
         self.title = "Pilih Minuman & ES"
@@ -80,17 +77,11 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         cell.drinksName.text =  drinksList[indexPath.row]
         
-        if indexPath.row == self.selectedIndexPath{
-            cell.drinksQunatity.text = "\(self.selectedCount)"
-        }else{
-            cell.drinksQunatity.text = "\(0)"
-        }
         
         cell.tag = indexPath.row
         cell.clickComplition = { (count, index) in
-            self.selectedIndexPath = index
-            self.selectedCount = count
-            collectionView.reloadData()
+       
+            
         }
         return cell
     }

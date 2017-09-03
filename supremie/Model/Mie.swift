@@ -1,12 +1,10 @@
 //
 //	Mie.swift
 //
-//	Create by Aman Prajapati on 2/9/2017
-//	Copyright © 2017. All rights reserved.
-//	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
+//  Created by Jigar Thakkar on 1/9/17.
+//  Copyright © 2017 JigarThakkar. All rights reserved.
 
 import Foundation
-
 
 class Mie : NSObject, NSCoding{
 

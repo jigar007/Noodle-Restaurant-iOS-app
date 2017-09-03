@@ -8,10 +8,8 @@
 
 import UIKit
 
-
 class FirstViewController: UIViewController {
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let url = URL(string: "http://139.59.96.68:8000/stock")
@@ -22,19 +20,14 @@ class FirstViewController: UIViewController {
             do {
 
                 let json = try JSONSerialization.jsonObject(with: data)as? [String:Any]
-                
                 InfoDetail.sharedInstant.objItem = Mie(fromDictionary: json!)
                 
             } catch let error as NSError {
                 print(error)
-
-                
             }
         }).resume()
     }
  
-    
-    
     // MARK: for hidding navigation bar in first screen
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
@@ -50,12 +43,13 @@ class FirstViewController: UIViewController {
     @IBAction func quickOrder(_ sender: Any) {
         
         performSegue(withIdentifier: "firstToSecond", sender: self)
+        InfoDetail.sharedInstant.JSONItem.diningMethod = "makan disini"
     }
     
     @IBAction func takeAway(_ sender: Any) {
         
         performSegue(withIdentifier: "firstToSecond", sender: self)
-        
+        InfoDetail.sharedInstant.JSONItem.diningMethod = "bungkus"
     }
 
 }

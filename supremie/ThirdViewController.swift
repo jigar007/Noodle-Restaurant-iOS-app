@@ -16,6 +16,9 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var noodleCollectionView: UICollectionView!
     
+    @IBAction func noodelAction(_ sender: Any) {
+    
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -90,14 +93,12 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
         cell.tag = indexPath.row
 
-        
         cell.clickComplition = { (count, index) in
             
             self.selectedIndexPath = index
             self.selectedCount = count
             
             collectionView.reloadData()
-
         }
         
         return cell

@@ -18,12 +18,10 @@ class drinksCollectionViewCell: UICollectionViewCell {
     @IBAction func drinksPlus(_ sender: Any) {
         
         var count:Int = Int(drinksQunatity.text!)!
-        
-        if count < 3 {
+     
             count = count + 1
             drinksQunatity.text = "\(count)"
             updateStatus(count: count)
-        }
     }
     
     @IBAction func drinksMinus(_ sender: Any) {
@@ -34,7 +32,6 @@ class drinksCollectionViewCell: UICollectionViewCell {
             count = count - 1
             drinksQunatity.text = "\(count)"
             updateStatus(count: count)
-            
         }
         
     }

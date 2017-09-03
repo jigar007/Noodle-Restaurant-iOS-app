@@ -19,6 +19,12 @@
 		251184221F5B9A5A0022EB50 /* Mie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2511841B1F5B9A5A0022EB50 /* Mie.swift */; };
 		251184231F5B9A5A0022EB50 /* Topping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2511841C1F5B9A5A0022EB50 /* Topping.swift */; };
 		251184251F5B9A5A0022EB50 /* SingletoneHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251184201F5B9A5A0022EB50 /* SingletoneHandler.swift */; };
+		251184271F5C253D0022EB50 /* billTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251184261F5C253D0022EB50 /* billTableViewCell.swift */; };
+		2511843A1F5C59C60022EB50 /* JSONDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251184351F5C59C60022EB50 /* JSONDrink.swift */; };
+		2511843B1F5C59C60022EB50 /* My.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251184361F5C59C60022EB50 /* My.swift */; };
+		2511843C1F5C59C60022EB50 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251184371F5C59C60022EB50 /* Order.swift */; };
+		2511843D1F5C59C60022EB50 /* POST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251184381F5C59C60022EB50 /* POST.swift */; };
+		2511843E1F5C59C60022EB50 /* JSONTopping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251184391F5C59C60022EB50 /* JSONTopping.swift */; };
 		251A27AB1F5944C700D8D0FA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A27AA1F5944C700D8D0FA /* FirstViewController.swift */; };
 		251A27B11F5952FE00D8D0FA /* CompanyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A27B01F5952FE00D8D0FA /* CompanyCollectionViewCell.swift */; };
 		251A27B31F5978FC00D8D0FA /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251A27B21F5978FC00D8D0FA /* ThirdViewController.swift */; };
@@ -62,6 +68,12 @@
 		2511841B1F5B9A5A0022EB50 /* Mie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mie.swift; sourceTree = "<group>"; };
 		2511841C1F5B9A5A0022EB50 /* Topping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topping.swift; sourceTree = "<group>"; };
 		251184201F5B9A5A0022EB50 /* SingletoneHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingletoneHandler.swift; sourceTree = "<group>"; };
+		251184261F5C253D0022EB50 /* billTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = billTableViewCell.swift; sourceTree = "<group>"; };
+		251184351F5C59C60022EB50 /* JSONDrink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONDrink.swift; path = JSON/JSONDrink.swift; sourceTree = "<group>"; };
+		251184361F5C59C60022EB50 /* My.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = My.swift; path = JSON/My.swift; sourceTree = "<group>"; };
+		251184371F5C59C60022EB50 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Order.swift; path = JSON/Order.swift; sourceTree = "<group>"; };
+		251184381F5C59C60022EB50 /* POST.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = POST.swift; path = JSON/POST.swift; sourceTree = "<group>"; };
+		251184391F5C59C60022EB50 /* JSONTopping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONTopping.swift; path = JSON/JSONTopping.swift; sourceTree = "<group>"; };
 		251A27AA1F5944C700D8D0FA /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		251A27B01F5952FE00D8D0FA /* CompanyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyCollectionViewCell.swift; sourceTree = "<group>"; };
 		251A27B21F5978FC00D8D0FA /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
@@ -109,8 +121,8 @@
 		251184191F5B9A590022EB50 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2511841A1F5B9A5A0022EB50 /* Drink.swift */,
 				2511841B1F5B9A5A0022EB50 /* Mie.swift */,
+				2511841A1F5B9A5A0022EB50 /* Drink.swift */,
 				2511841C1F5B9A5A0022EB50 /* Topping.swift */,
 			);
 			path = Model;
@@ -122,6 +134,18 @@
 				251184201F5B9A5A0022EB50 /* SingletoneHandler.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		251184341F5C59900022EB50 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				251184381F5C59C60022EB50 /* POST.swift */,
+				251184371F5C59C60022EB50 /* Order.swift */,
+				251184361F5C59C60022EB50 /* My.swift */,
+				251184391F5C59C60022EB50 /* JSONTopping.swift */,
+				251184351F5C59C60022EB50 /* JSONDrink.swift */,
+			);
+			name = JSON;
 			sourceTree = "<group>";
 		};
 		25636F801F592C3700A0E3A1 = {
@@ -147,6 +171,7 @@
 		25636F8B1F592C3700A0E3A1 /* supremie */ = {
 			isa = PBXGroup;
 			children = (
+				251184341F5C59900022EB50 /* JSON */,
 				251184191F5B9A590022EB50 /* Model */,
 				2511841F1F5B9A5A0022EB50 /* Util */,
 				25636F8C1F592C3700A0E3A1 /* AppDelegate.swift */,
@@ -165,6 +190,7 @@
 				251183FD1F5A802A0022EB50 /* toppingsCollectionViewCell.swift */,
 				251184091F5AE2F50022EB50 /* chilliCollectionViewCell.swift */,
 				2511840B1F5AE30C0022EB50 /* drinksCollectionViewCell.swift */,
+				251184261F5C253D0022EB50 /* billTableViewCell.swift */,
 				25636F981F592C3700A0E3A1 /* Info.plist */,
 				25636F951F592C3700A0E3A1 /* LaunchScreen.storyboard */,
 			);
@@ -328,11 +354,14 @@
 			files = (
 				251A27B11F5952FE00D8D0FA /* CompanyCollectionViewCell.swift in Sources */,
 				251184081F5AE23D0022EB50 /* thankYouViewController.swift in Sources */,
+				251184271F5C253D0022EB50 /* billTableViewCell.swift in Sources */,
 				251A27AB1F5944C700D8D0FA /* FirstViewController.swift in Sources */,
+				2511843C1F5C59C60022EB50 /* Order.swift in Sources */,
 				2511840C1F5AE30C0022EB50 /* drinksCollectionViewCell.swift in Sources */,
 				2511840A1F5AE2F50022EB50 /* chilliCollectionViewCell.swift in Sources */,
 				251A27B31F5978FC00D8D0FA /* ThirdViewController.swift in Sources */,
 				251184231F5B9A5A0022EB50 /* Topping.swift in Sources */,
+				2511843E1F5C59C60022EB50 /* JSONTopping.swift in Sources */,
 				251183FE1F5A802A0022EB50 /* toppingsCollectionViewCell.swift in Sources */,
 				2529DB1D1F5A6089008B1FB3 /* noodleCollectionViewCell.swift in Sources */,
 				25AC661F1F59416C00E9E4A2 /* SecondViewController.swift in Sources */,
@@ -340,9 +369,12 @@
 				251184041F5AE1D70022EB50 /* drinksViewController.swift in Sources */,
 				251184061F5AE20C0022EB50 /* totalBillViewController.swift in Sources */,
 				251184251F5B9A5A0022EB50 /* SingletoneHandler.swift in Sources */,
+				2511843D1F5C59C60022EB50 /* POST.swift in Sources */,
 				25636F8D1F592C3700A0E3A1 /* AppDelegate.swift in Sources */,
 				251184211F5B9A5A0022EB50 /* Drink.swift in Sources */,
+				2511843B1F5C59C60022EB50 /* My.swift in Sources */,
 				251184021F5AE1A90022EB50 /* chilliViewController.swift in Sources */,
+				2511843A1F5C59C60022EB50 /* JSONDrink.swift in Sources */,
 				251184221F5B9A5A0022EB50 /* Mie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
