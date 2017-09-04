@@ -72,7 +72,11 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         _ = self.navigationController?.popViewController(animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
+        if(selectedCount < 3){
+        selectedIndexPath = indexPath.row
+        selectedCount = selectedCount + 1
+        collectionView.reloadData()
+        }
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
