@@ -14,12 +14,16 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
     var selectedIndexPath:Int = 0
     var selectedCount:Int = 0
     
+    @IBAction func noodleRed(_ sender: Any) {
+        noodleButton.backgroundColor=UIColor.red
+
+    }
     @IBOutlet weak var noodleCollectionView: UICollectionView!
     
     @IBOutlet weak var noodleButton: UIButton!
+
     @IBAction func noodelAction(_ sender: Any) {
-            
-    noodleButton.backgroundColor=UIColor.red
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
