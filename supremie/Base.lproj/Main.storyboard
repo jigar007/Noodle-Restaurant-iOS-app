@@ -14,7 +14,96 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="FirstViewController" customModule="supremie" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="7bZ-xg-aMw">
+                                <rect key="frame" x="285" y="264" width="454" height="205"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="supremieLogo" translatesAutoresizingMaskIntoConstraints="NO" id="nv8-lc-yUu">
+                                        <rect key="frame" x="0.0" y="0.0" width="454" height="148"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INSTANT NOODLE HOUSE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeA-I3-BKU">
+                                        <rect key="frame" x="42.5" y="170" width="369" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="369" id="d7h-b9-x0E"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="YMT-ff-3Bn">
+                                <rect key="frame" x="368" y="876" width="288" height="222"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ja-YO-btl">
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="84"/>
+                                        <color key="backgroundColor" red="0.90019786357879639" green="0.14751315116882324" blue="0.15620872378349304" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="84" id="Cv0-9C-TiT"/>
+                                            <constraint firstAttribute="width" constant="288" id="k3g-di-Uec"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="84" id="tGy-df-MNh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                        <inset key="contentEdgeInsets" minX="20" minY="10" maxX="20" maxY="10"/>
+                                        <state key="normal" title="  MAKAN DISINI" image="eathere">
+                                            <color key="titleColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="quickOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6dU-Sa-vGn"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ATAU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqB-8b-Nrb">
+                                        <rect key="frame" x="122" y="102" width="44.5" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="NW8-dG-pIm"/>
+                                            <constraint firstAttribute="height" constant="18" id="vrv-Rl-QhL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bdu-Lg-dKC">
+                                        <rect key="frame" x="0.0" y="138" width="288" height="84"/>
+                                        <color key="backgroundColor" red="0.90019786359999998" green="0.1475131512" blue="0.1562087238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="84" id="RRv-0k-dtI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="70" maxY="0.0"/>
+                                        <state key="normal" title="BUNGKUS" image="takeaway">
+                                            <color key="titleColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="takeAway:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9qG-KZ-JEX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="2Ja-YO-btl" firstAttribute="leading" secondItem="YMT-ff-3Bn" secondAttribute="leading" id="5z6-Hd-15z"/>
+                                    <constraint firstAttribute="trailing" secondItem="Bdu-Lg-dKC" secondAttribute="trailing" id="fQk-pl-fq1"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Ja-YO-btl" secondAttribute="trailing" id="gZG-K9-KCE"/>
+                                    <constraint firstItem="2Ja-YO-btl" firstAttribute="leading" secondItem="Bdu-Lg-dKC" secondAttribute="leading" id="iDe-uk-nmp"/>
+                                    <constraint firstItem="Bdu-Lg-dKC" firstAttribute="leading" secondItem="YMT-ff-3Bn" secondAttribute="leading" id="o7b-Ko-J50"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="lessThanOrEqual" secondItem="YMT-ff-3Bn" secondAttribute="bottom" constant="225" id="KGu-Dc-Er3"/>
+                            <constraint firstItem="YMT-ff-3Bn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TVZ-LS-LME"/>
+                            <constraint firstItem="7bZ-xg-aMw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="U0x-oa-mni"/>
+                            <constraint firstItem="7bZ-xg-aMw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="200" id="WWb-rV-6ud"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YMT-ff-3Bn" secondAttribute="bottom" constant="224" id="vPb-9Q-6jx"/>
+                        </constraints>
+                    </view>
                     <navigationItem key="navigationItem" id="wsp-U1-0CE"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -261,6 +350,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="noodleButton" destination="nlq-OG-uzQ" id="gWr-Jd-ESE"/>
                         <outlet property="noodleCollectionView" destination="kyo-te-eWc" id="HBr-jr-PRn"/>
                     </connections>
                 </viewController>
@@ -910,7 +1000,9 @@ KASIH</string>
     <resources>
         <image name="Mangkok" width="675" height="67"/>
         <image name="cancelButton" width="27" height="27"/>
+        <image name="eathere" width="32" height="61"/>
         <image name="supremieLogo" width="454" height="148"/>
+        <image name="takeaway" width="61" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wWN-Gk-mTz"/>

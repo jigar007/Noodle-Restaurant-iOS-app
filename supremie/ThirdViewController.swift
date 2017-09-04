@@ -16,8 +16,10 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var noodleCollectionView: UICollectionView!
     
+    @IBOutlet weak var noodleButton: UIButton!
     @IBAction func noodelAction(_ sender: Any) {
-    
+            
+    noodleButton.backgroundColor=UIColor.red
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +67,9 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return noodleList.count
