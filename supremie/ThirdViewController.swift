@@ -11,12 +11,12 @@ import UIKit
 class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource
 {
     var noodleList = [String]()
+    var noodleIdList = [Int]()
+    var noodleFlavor:String = ""
     var selectedIndexPath:Int = 0
     var selectedCount:Int = 0
     
     @IBAction func noodleRed(_ sender: Any) {
-        noodleButton.backgroundColor=UIColor.red
-
     }
     @IBOutlet weak var noodleCollectionView: UICollectionView!
     
@@ -24,14 +24,25 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
 
     @IBAction func noodelAction(_ sender: Any) {
         
+        for item in InfoDetail.sharedInstant.objItem.mie
+        {
+            if item.id == selectedIndexPath + 1 && item.flavour ==  noodleFlavor {
+                InfoDetail.id = selectedIndexPath + 1
+                InfoDetail.quantity_mie = selectedCount
+                InfoDetail.price = item.price
+            }
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(InfoDetail.sharedInstant.objItem.mie.count)
+        
         for item in InfoDetail.sharedInstant.objItem.mie
         {
-            if item.stock>0 && item.brand ==  InfoDetail.selectedName {
+            if item.stock>3 && item.brand ==  InfoDetail.selectedName {
                 noodleList.append(item.flavour)
+                noodleIdList.append(item.id)
             }
         }
 
@@ -72,9 +83,11 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         _ = self.navigationController?.popViewController(animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       
         if(selectedCount < 3){
         selectedIndexPath = indexPath.row
         selectedCount = selectedCount + 1
+        noodleButton.backgroundColor=UIColor.red
         collectionView.reloadData()
         }
     }
@@ -107,11 +120,14 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
 
         cell.clickComplition = { (count, index) in
             
+            self.noodleFlavor = self.noodleList[indexPath.row]
             self.selectedIndexPath = index
             self.selectedCount = count
+            self.noodleButton.backgroundColor = UIColor.red
             
             collectionView.reloadData()
         }
+        
         
         return cell
     }

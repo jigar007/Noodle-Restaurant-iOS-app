@@ -11,18 +11,35 @@ import UIKit
 class ForthViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
  
     var toppingsList = [String]()
-    var selectedIndexPath:Int = 0
-    var selectedCount:Int = 0
-    
+    var toppingDictionary = [Int: Int]()
+//    var selectedIndexPath:Int = 0
+//    var selectedCount:Int = 0
+    var selectedToppingList = [JSONTopping]()
+ 
     @IBOutlet weak var toppingsCollectionView: UICollectionView!
     
+    @IBAction func toppingSelect(_ sender: Any) {
+       
+        for (index,count) in toppingDictionary{
+            for item in InfoDetail.sharedInstant.objItem.toppings
+            {
+                if item.id == index {
+//                    let toppingItem : JSONTopping
+//                    toppingItem.id = item.id
+//                    toppingItem.price = item.price
+//                    toppingItem.quantity = count
+                }
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         for item in InfoDetail.sharedInstant.objItem.toppings
         {
-            if item.stock>0 {
+            if item.stock>3 {
                 toppingsList.append(item.name)
+                
             }
         }
         
@@ -59,7 +76,6 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
     }
     
-  
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
@@ -82,17 +98,19 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
         cell.toppingsName.text =  toppingsList[indexPath.row]
         
-        if indexPath.row == self.selectedIndexPath{
-            cell.toppingsQuantity.text = "\(self.selectedCount)"
-        }else{
-            cell.toppingsQuantity.text = "\(0)"
-        }
-        
         cell.tag = indexPath.row
         cell.clickComplition = { (count, index) in
-            self.selectedIndexPath = index
-            self.selectedCount = count
-            collectionView.reloadData()
+            
+            self.toppingDictionary[index+1] = count
+//            for item in InfoDetail.sharedInstant.objItem.toppings
+//            {
+//                if item.id == index + 1{
+//                    var toppingItem : JSONTopping
+//                    toppingItem.id = item.id
+//                    toppingItem.price = item.price
+//                    toppingItem.quantity = count
+//                }
+//            }
         }
         return cell
     }

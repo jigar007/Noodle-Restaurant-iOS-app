@@ -497,6 +497,7 @@
                                             <color key="titleColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="toppingSelect:" destination="gIG-yJ-505" eventType="touchUpInside" id="Zr4-JC-hyz"/>
                                             <segue destination="Qbz-bL-twD" kind="show" identifier="forthToChilli" id="6LT-93-wFa"/>
                                         </connections>
                                     </button>

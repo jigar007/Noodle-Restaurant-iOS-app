@@ -17,7 +17,9 @@ class InfoDetail {
     static var selectedName:String = ""
     
     static var dining_method:String = ""
-    
+    static var id: Int = 0
+    static var quantity_mie:Int = 0
+    static var price:Int = 0
     
     
 }

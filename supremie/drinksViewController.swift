@@ -80,7 +80,6 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         cell.tag = indexPath.row
         cell.clickComplition = { (count, index) in
-       
             
         }
         return cell
