@@ -84,11 +84,18 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
-        if(selectedCount < 3){
-        selectedIndexPath = indexPath.row
-        selectedCount = selectedCount + 1
-        noodleButton.backgroundColor=UIColor.red
-        collectionView.reloadData()
+        if(selectedIndexPath == indexPath.row){
+            if (selectedCount < 3){
+                selectedIndexPath = indexPath.row
+                selectedCount = selectedCount + 1
+                noodleButton.backgroundColor=UIColor.red
+                collectionView.reloadData()
+            }
+        }else {
+            selectedIndexPath = indexPath.row
+            selectedCount = 1
+            noodleButton.backgroundColor=UIColor.red
+            collectionView.reloadData()
         }
     }
 
