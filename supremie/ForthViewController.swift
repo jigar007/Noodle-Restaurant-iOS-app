@@ -10,8 +10,7 @@ import UIKit
 
 class ForthViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
  
-    var toppingsList = ["vsoAyamBawang","vsoCabeIjo","vsoGoreng","vsoKariAyam","vsoRendang","vsoSotoMie"]
-
+    var toppingsList = [String]()
     var selectedIndexPath:Int = 0
     var selectedCount:Int = 0
     
@@ -80,8 +79,6 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         }else{
             cell.toppingsPicture.image = UIImage(named: "Default")
         }
-        
-        
         
         cell.toppingsName.text =  toppingsList[indexPath.row]
         

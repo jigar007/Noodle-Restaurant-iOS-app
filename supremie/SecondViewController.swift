@@ -29,6 +29,7 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         // For Button and title in navigation bar
         self.title = "PILIH MIE INSTAN"
+        
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
@@ -44,7 +45,7 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
         let barButton = UIBarButtonItem(customView: btnLeftMenu)
         self.navigationItem.leftBarButtonItem = barButton
         
-        // For making collection view device independent
+//         For making collection view device independent
         var screenSize: CGRect!
         var screenWidth: CGFloat!
         var screenHeight: CGFloat!

@@ -11,12 +11,13 @@ import Foundation
 class InfoDetail {
     
     static let sharedInstant:InfoDetail = InfoDetail()
+    var objItem:Mie!
+    var JSONItem:Order!
     
     static var selectedName:String = ""
     
-    
     static var dining_method:String = ""
     
-    var objItem:Mie!
-    var JSONItem:Order!
+    
+    
 }

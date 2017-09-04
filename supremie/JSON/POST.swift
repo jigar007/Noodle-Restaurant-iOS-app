@@ -3,7 +3,6 @@
 //
 //	Create by Jigar Thakkar on 4/9/2017
 //	Copyright © 2017. All rights reserved.
-//	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
 import Foundation
 
@@ -11,7 +10,6 @@ import Foundation
 class POST : NSObject, NSCoding{
 
 	var order : Order!
-
 
 	/**
 	 * Instantiate the instance using the passed dictionary values to set the properties values
@@ -41,7 +39,6 @@ class POST : NSObject, NSCoding{
     @objc required init(coder aDecoder: NSCoder)
 	{
          order = aDecoder.decodeObject(forKey: "order") as? Order
-
 	}
 
     /**
