@@ -19,11 +19,12 @@ class toppingsCollectionViewCell: UICollectionViewCell {
     @IBAction func toppingsPlus(_ sender: Any) {
         
         var count:Int = Int(toppingsQuantity.text!)!
-    
+        
+        if count < 3 {
             count = count + 1
             toppingsQuantity.text = "\(count)"
             updateStatus(count: count)
-        
+        }
     }
     
     @IBAction func toppingsMinus(_ sender: Any) {

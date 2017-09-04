@@ -71,13 +71,11 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return companyNamesList.count
-
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"companyLogoCell", for: indexPath) as! CompanyCollectionViewCell
-        
         
             if ((UIImage(named: companyNamesList[indexPath.row])) != nil){
             cell.company.image = UIImage(named: companyNamesList[indexPath.row])

@@ -11,8 +11,13 @@ import UIKit
 class drinksViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource  {
 
     var drinksList = [String]()
+    var selectedIndexPath:Int = 0
+    var selectedCount:Int = 0
+    
+    @IBOutlet weak var drinksButton: UIButton!
 
     @IBOutlet weak var drinksCiewController: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,12 +58,21 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8
         drinksCiewController.collectionViewLayout = layout
-        
     }
-    
     
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+            if (selectedCount < 2){
+                selectedIndexPath = indexPath.row
+                selectedCount = selectedCount + 1
+                drinksButton.backgroundColor=UIColor.red
+                collectionView.reloadData()
+            }
+ 
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
@@ -77,10 +91,19 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         cell.drinksName.text =  drinksList[indexPath.row]
         
-        
+//        if indexPath.row == self.selectedIndexPath{
+//            cell.drinksQunatity.text = "\(self.selectedCount)"
+//        }else{
+//            cell.drinksQunatity.text = "\(0)"
+//        }
         cell.tag = indexPath.row
         cell.clickComplition = { (count, index) in
-            
+            self.drinksButton.backgroundColor = UIColor.red
+            self.selectedIndexPath = index
+            self.selectedCount = count
+            self.drinksButton.backgroundColor = UIColor.red
+            collectionView.reloadData()
+
         }
         return cell
     }

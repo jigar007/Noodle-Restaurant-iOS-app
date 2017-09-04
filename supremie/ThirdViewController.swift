@@ -36,8 +36,6 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(InfoDetail.sharedInstant.objItem.mie.count)
-        
         for item in InfoDetail.sharedInstant.objItem.mie
         {
             if item.stock>3 && item.brand ==  InfoDetail.selectedName {
@@ -88,14 +86,17 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
             if (selectedCount < 3){
                 selectedIndexPath = indexPath.row
                 selectedCount = selectedCount + 1
-                noodleButton.backgroundColor=UIColor.red
                 collectionView.reloadData()
             }
         }else {
             selectedIndexPath = indexPath.row
             selectedCount = 1
-            noodleButton.backgroundColor=UIColor.red
             collectionView.reloadData()
+        }
+        if (selectedCount == 0){
+            self.noodleButton.backgroundColor = UIColor(red: 146/255, green: 148/255, blue: 151/255, alpha: 1.0)
+        }else{
+            noodleButton.backgroundColor=UIColor.red
         }
     }
 
@@ -122,7 +123,6 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
             cell.noodleQunatity.text = "\(0)"
             
         }
-        
         cell.tag = indexPath.row
 
         cell.clickComplition = { (count, index) in
@@ -130,11 +130,13 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
             self.noodleFlavor = self.noodleList[indexPath.row]
             self.selectedIndexPath = index
             self.selectedCount = count
-            self.noodleButton.backgroundColor = UIColor.red
-            
+            if (self.selectedCount == 0){
+                self.noodleButton.backgroundColor = UIColor(red: 146/255, green: 148/255, blue: 151/255, alpha: 1.0)
+            }else{
+                self.noodleButton.backgroundColor=UIColor.red
+            }
             collectionView.reloadData()
         }
-        
         
         return cell
     }
