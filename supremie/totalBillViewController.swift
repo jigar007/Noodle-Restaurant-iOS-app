@@ -8,8 +8,10 @@
 
 import UIKit
 
-class totalBillViewController: UIViewController {
-    //, UITableViewDataSource,UITableViewDelegate
+class totalBillViewController: UIViewController
+//    , UITableViewDataSource,UITableViewDelegate
+ {
+    
     @IBAction func cash(_ sender: Any) {
         showAlert(message: "cash")
     }
@@ -17,6 +19,8 @@ class totalBillViewController: UIViewController {
     @IBAction func card(_ sender: Any) {
         showAlert(message: "card")
     }
+    
+    @IBOutlet weak var fianlTotalPrice: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,18 +43,25 @@ class totalBillViewController: UIViewController {
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
+//    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+//        
+//        
+//    }
+//
+//    
+//    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+//    }
+//    
 }
 
 
 extension totalBillViewController {
-    
     
     func showAlert(message:String)  {
         
         let alertController = UIAlertController(title: "Warning!", message: "Are you sure want to pay by " + message, preferredStyle: .alert)
         
         let actionCancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-            
         }
         
         let actionOk = UIAlertAction(title: "Ok", style: .default) { (action) in
@@ -66,8 +77,6 @@ extension totalBillViewController {
     func createRequestrDict(paymentType:String)  {
         
         var requestDict = [String : Any]()
-//        var requestString: String = ""
-        
         var orderDict = [String : Any]()
         orderDict["total_price"] = calculateTotalPrice()
         orderDict["payment_method"] = paymentType
@@ -82,13 +91,11 @@ extension totalBillViewController {
         mieDict["note"]=""
         
         var toppingList = [[String:Any]]()
-        
         for topping in SelectedModel.sharedInstant.selectedToppings {
             var toppingDict = [String:Any]()
             toppingDict["id"] = topping.id
             toppingDict["quantity"] = topping.count
             toppingDict["price"] = topping.price
-            
             toppingList.append(toppingDict)
         }
         
@@ -96,19 +103,15 @@ extension totalBillViewController {
         orderDict["mies"] = [mieDict]
         
         var drinkList = [[String:Any]]()
-        
         for drink in SelectedModel.sharedInstant.selectedDrinks {
             var drinkDict = [String:Any]()
             drinkDict["id"] = drink.id
             drinkDict["quantity"] = drink.count
             drinkDict["price"] = drink.price
-            
             drinkList.append(drinkDict)
         }
-        
         orderDict["drinks"] = drinkList
         requestDict["order"] = orderDict
-                
         requestToPay(params: requestDict)
     }
     
@@ -123,36 +126,27 @@ extension totalBillViewController {
         for toppings in SelectedModel.sharedInstant.selectedToppings {
             totalAmount = totalAmount + toppings.price
         }
-        
         return totalAmount
     }
     
     func requestToPay(params:[String:Any]) {
         
-        print(params)
-        
-        
         var request = URLRequest(url: URL(string: "http://139.59.96.68:8000/orders/")!)
         request.httpMethod = "POST"
         do {
             let bodyData = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-        
             let jsonString = String(data: bodyData, encoding: String.Encoding.utf8)
             print(jsonString!)
             
             request.httpBody = bodyData
             request.setValue("application/json;application/html; charset=utf-8", forHTTPHeaderField: "Content-Type")
             
-            print(bodyData)
-            
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {                                                 // check for fundamental networking error
-                    print("error=\(String(describing: error))")
+                guard let data = data, error == nil else {                                                                     print("error=\(String(describing: error))")
                     return
                 }
                 
-                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {                               print("statusCode should be 200, but is \(httpStatus.statusCode)")
                     print("response = \(String(describing: response))")
                 }
                 

@@ -9,6 +9,7 @@
 import UIKit
 
 class ForthViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
+    @IBOutlet weak var toppingsButton: UIButton!
  
     var toppingList = InfoDetail.sharedInstant.objItem.toppings.filter { (topping) -> Bool in
         return topping.stock >= 3
@@ -20,7 +21,6 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
        SelectedModel.sharedInstant.selectedToppings = toppingList.filter({ (topping) -> Bool in
             return topping.count > 0
        })
-   // performSegue(withIdentifier: "forthToChilli", sender: nil)
     }
     
     override func viewDidLoad() {
@@ -75,7 +75,13 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         cell.objTopping = toppingList[indexPath.row]
         cell.tag = indexPath.row
         cell.clickComplition = { (count, index) in
+            if (count == 0){
+                self.toppingsButton.backgroundColor = UIColor(red: 146/255, green: 148/255, blue: 151/255, alpha: 1.0)
+            }else{
+                self.toppingsButton.backgroundColor = UIColor(red: 227/255, green: 41/255, blue: 48/255, alpha: 1.0)
+            }
             self.enableDisbleButton()
+            
         }
         return cell
     }
@@ -92,10 +98,8 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         }
         
         guard tempList.count > 0 else {
-//            isEnabled = false
             return
         }
         
-//        isEnabled = true
     }
 }

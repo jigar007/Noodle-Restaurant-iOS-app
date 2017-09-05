@@ -98,6 +98,12 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
             self.enableDisableNextButton()
             self.resetCountVariable()
             cell.updateStatus(count: count)
+            
+            if (count == 0){
+                self.noodleButton.backgroundColor = UIColor(red: 146/255, green: 148/255, blue: 151/255, alpha: 1.0)
+            }else{
+                self.noodleButton.backgroundColor = UIColor(red: 227/255, green: 41/255, blue: 48/255, alpha: 1.0)
+            }
         }
         
         return cell

@@ -6,8 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -522,6 +520,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="toppingsButton" destination="GxZ-wB-pqW" id="g0m-ut-8jA"/>
                         <outlet property="toppingsCollectionView" destination="4op-dq-jdT" id="hGf-hH-WfF"/>
                     </connections>
                 </viewController>
@@ -774,6 +773,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="drinksButton" destination="Ot4-m8-rnV" id="Try-mg-lrj"/>
                         <outlet property="drinksCiewController" destination="LqS-D5-dDq" id="7Nj-8w-pzK"/>
                     </connections>
                 </viewController>
@@ -857,29 +857,21 @@
                                         <rect key="frame" x="0.0" y="28" width="1024" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R0f-9d-mjj" id="qvg-gH-cTa">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ap-eQ-e5O">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ap-eQ-e5O">
                                                     <rect key="frame" x="63" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjS-Pe-R8u">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjS-Pe-R8u">
                                                     <rect key="frame" x="391" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.62467861175537109" green="0.56734365224838257" blue="0.62497377395629883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S20-hN-RX9">
-                                                    <rect key="frame" x="949" y="8" width="27" height="27"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="27" id="YXO-0p-Py3"/>
-                                                        <constraint firstAttribute="width" constant="27" id="ZpO-iw-gg7"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button" image="cancelButton"/>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="RP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfB-kP-wDV">
                                                     <rect key="frame" x="676" y="9" width="158" height="24"/>
                                                     <constraints>
@@ -891,21 +883,13 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="S20-hN-RX9" firstAttribute="centerY" secondItem="4Ap-eQ-e5O" secondAttribute="centerY" id="HDH-zf-eza"/>
                                                 <constraint firstItem="sjS-Pe-R8u" firstAttribute="leading" secondItem="qvg-gH-cTa" secondAttribute="leading" constant="391" id="JHk-3J-jP2"/>
-                                                <constraint firstItem="S20-hN-RX9" firstAttribute="centerY" secondItem="sjS-Pe-R8u" secondAttribute="centerY" id="Vsz-9P-wkN"/>
-                                                <constraint firstItem="OfB-kP-wDV" firstAttribute="baseline" secondItem="S20-hN-RX9" secondAttribute="firstBaseline" id="Ycz-b5-KtO"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="S20-hN-RX9" secondAttribute="trailing" constant="40" id="ZE5-qf-hUp"/>
-                                                <constraint firstItem="S20-hN-RX9" firstAttribute="centerY" secondItem="qvg-gH-cTa" secondAttribute="centerY" id="bGv-gg-Fk7"/>
-                                                <constraint firstItem="OfB-kP-wDV" firstAttribute="centerY" secondItem="S20-hN-RX9" secondAttribute="centerY" id="pAy-wH-KD1"/>
                                                 <constraint firstAttribute="trailing" secondItem="OfB-kP-wDV" secondAttribute="trailing" constant="190" id="tDe-mW-XwU"/>
-                                                <constraint firstItem="OfB-kP-wDV" firstAttribute="firstBaseline" secondItem="S20-hN-RX9" secondAttribute="baseline" id="vg3-4e-Liq"/>
                                                 <constraint firstItem="4Ap-eQ-e5O" firstAttribute="leading" secondItem="qvg-gH-cTa" secondAttribute="leadingMargin" constant="55" id="wRz-dy-bsQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="Qty" destination="sjS-Pe-R8u" id="dqG-jv-QMm"/>
-                                            <outlet property="cancelBtn" destination="S20-hN-RX9" id="jyH-SA-dkB"/>
                                             <outlet property="iteamName" destination="4Ap-eQ-e5O" id="nBs-7i-som"/>
                                         </connections>
                                     </tableViewCell>
@@ -932,6 +916,9 @@
                             <constraint firstItem="gCM-EH-k4c" firstAttribute="centerY" secondItem="bTV-W1-z5C" secondAttribute="centerY" constant="495" id="ur0-4X-hYk"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="fianlTotalPrice" destination="L1M-nV-NOP" id="uSE-Pj-qdt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="APw-Hx-XWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1023,7 +1010,6 @@ KASIH</string>
     </scenes>
     <resources>
         <image name="Mangkok" width="675" height="67"/>
-        <image name="cancelButton" width="27" height="27"/>
         <image name="eathere" width="32" height="61"/>
         <image name="supremieLogo" width="454" height="148"/>
         <image name="takeaway" width="61" height="60"/>

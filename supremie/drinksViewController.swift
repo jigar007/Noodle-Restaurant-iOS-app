@@ -10,12 +10,13 @@ import UIKit
 
 class drinksViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource  {
 
+    @IBOutlet weak var drinksButton: UIButton!
     var drinksList = InfoDetail.sharedInstant.objItem.drinks
 
     @IBOutlet weak var drinksCiewController: UICollectionView!
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
         
         // For Button and title in navigation bar
         self.title = "Pilih Minuman & ES"
@@ -50,7 +51,6 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         
     }
     
-    
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
@@ -66,6 +66,12 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         cell.objDrinks = drinksList?[indexPath.row]
         cell.tag = indexPath.row
         cell.clickComplition = { (count, index) in
+            
+            if (count == 0){
+                self.drinksButton.backgroundColor = UIColor(red: 146/255, green: 148/255, blue: 151/255, alpha: 1.0)
+            }else{
+                self.drinksButton.backgroundColor = UIColor(red: 227/255, green: 41/255, blue: 48/255, alpha: 1.0)
+            }
             
         }
         return cell
