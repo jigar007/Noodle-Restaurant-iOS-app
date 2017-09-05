@@ -19,6 +19,9 @@ class InfoDetail {
     static var quantity_mie:Int = 0
     static var price:Int = 0
     
+    static var order_id: Int = 0
+    static var response:Int = 0
+    static var responseDict = [String:Any]()
 }
 
 class SelectedModel {
@@ -32,4 +35,11 @@ class SelectedModel {
     
     var chilliLevel = 0
     
+}
+
+class SuperOfAll{
+//    static let SuperOfAll: tablePrint = SuperOfAll()
+    var name: String = ""
+    var qty:Int = 0
+    var price:Int = 0
 }

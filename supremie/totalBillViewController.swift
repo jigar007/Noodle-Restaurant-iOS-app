@@ -8,22 +8,50 @@
 
 import UIKit
 
-class totalBillViewController: UIViewController
-//    , UITableViewDataSource,UITableViewDelegate
+class totalBillViewController: UIViewController, UITableViewDataSource,UITableViewDelegate
  {
-    
+    static var orderNumber:Int = 0
+    var tableData:[SuperOfAll] = [SuperOfAll]()
+
     @IBAction func cash(_ sender: Any) {
-        showAlert(message: "cash")
+//        showAlert(message: "cash")
+        self.createRequestrDict(paymentType: "cash" )
     }
     
     @IBAction func card(_ sender: Any) {
-        showAlert(message: "card")
+//        showAlert(message: "card")
+        self.createRequestrDict(paymentType: "card" )
     }
     
     @IBOutlet weak var fianlTotalPrice: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let obj:SuperOfAll = SuperOfAll()
+        obj.name = (SelectedModel.sharedInstant.selectedMie?.flavour)!
+        obj.qty = (SelectedModel.sharedInstant.selectedMie?.count)!
+        obj.price = (SelectedModel.sharedInstant.selectedMie?.price)!
+        
+        tableData.append(obj)
+
+        for topping in SelectedModel.sharedInstant.selectedToppings {
+            let obj:SuperOfAll = SuperOfAll()
+            obj.name=topping.name
+            obj.price=topping.price
+            obj.qty=topping.count
+            tableData.append(obj)
+            
+        }
+        for drink in SelectedModel.sharedInstant.selectedDrinks {
+            let obj:SuperOfAll = SuperOfAll()
+            obj.name = drink.flavour
+            obj.price=drink.price
+            obj.qty=drink.count
+            tableData.append(obj)
+            
+        }
+        
         
         // For Button and title in navigation bar
         self.title = "Review Pesanan"
@@ -43,37 +71,44 @@ class totalBillViewController: UIViewController
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
-//    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-//        
-//        
-//    }
-//
-//    
-//    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-//    }
-//    
-}
-
-
-extension totalBillViewController {
     
-    func showAlert(message:String)  {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return tableData.count
         
-        let alertController = UIAlertController(title: "Warning!", message: "Are you sure want to pay by " + message, preferredStyle: .alert)
-        
-        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-        }
-        
-        let actionOk = UIAlertAction(title: "Ok", style: .default) { (action) in
-            self.createRequestrDict(paymentType: message)
-        }
-        
-        alertController.addAction(actionCancel)
-        alertController.addAction(actionOk)
-        
-        present(alertController, animated: true, completion: nil)
     }
+
     
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier:"billCell", for: indexPath) as!billTableViewCell
+        
+//        let obj1 = tableData[indexPath.row]
+        cell.iteamName.text = tableData[indexPath.row].name
+        cell.Qty.text = String(tableData[indexPath.row].qty)
+        cell.price.text = String(tableData[indexPath.row].price)
+        
+        return cell
+
+    }
+
+    
+//    func showAlert(message:String)  {
+//        
+//        let alertController = UIAlertController(title: "Warning!", message: "Are you sure want to pay by " + message, preferredStyle: .alert)
+//        
+//        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+//        }
+//        
+//        let actionOk = UIAlertAction(title: "Ok", style: .default) { (action) in
+//            self.createRequestrDict(paymentType: message)
+//        }
+//        
+//        alertController.addAction(actionCancel)
+//        alertController.addAction(actionOk)
+//        
+//        present(alertController, animated: true, completion: nil)
+//    }
+//    
     func createRequestrDict(paymentType:String)  {
         
         var requestDict = [String : Any]()
@@ -142,7 +177,9 @@ extension totalBillViewController {
             request.setValue("application/json;application/html; charset=utf-8", forHTTPHeaderField: "Content-Type")
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {                                                                     print("error=\(String(describing: error))")
+              
+                guard let data = data, error == nil else {
+                    print("error=\(String(describing: error))")
                     return
                 }
                 
@@ -150,6 +187,12 @@ extension totalBillViewController {
                     print("response = \(String(describing: response))")
                 }
                 
+                do{
+                let json = try JSONSerialization.jsonObject(with: data)as? [String:Any]
+                totalBillViewController.orderNumber = (json?["id"] as? Int)!
+                    print(totalBillViewController.orderNumber )
+                }catch{
+                }
                 let responseString = String(data: data, encoding: .utf8)
                 print("responseString = \(String(describing: responseString))")
             }

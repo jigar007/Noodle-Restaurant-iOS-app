@@ -10,17 +10,13 @@ import UIKit
 
 class thankYouViewController: UIViewController {
     
+    @IBOutlet weak var orderID: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        orderID.text = "Order ID:"+String(totalBillViewController.orderNumber)
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    // MARK: for hidding navigation bar in first screen
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
         super.viewWillDisappear(animated)
@@ -30,5 +26,4 @@ class thankYouViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-
 }

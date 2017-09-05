@@ -891,9 +891,14 @@
                                         <connections>
                                             <outlet property="Qty" destination="sjS-Pe-R8u" id="dqG-jv-QMm"/>
                                             <outlet property="iteamName" destination="4Ap-eQ-e5O" id="nBs-7i-som"/>
+                                            <outlet property="price" destination="OfB-kP-wDV" id="s5N-Kb-Evn"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="CWM-Ea-Ip7" id="Qit-gk-FdI"/>
+                                    <outlet property="delegate" destination="CWM-Ea-Ip7" id="PJO-jS-aaq"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -937,7 +942,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="yH8-7t-Xdt">
-                                <rect key="frame" x="0.0" y="229.5" width="1024" height="907"/>
+                                <rect key="frame" x="0.0" y="184.5" width="1024" height="998"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mangkok" translatesAutoresizingMaskIntoConstraints="NO" id="NWm-UA-vBy">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="104"/>
@@ -946,7 +951,7 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="hlz-Ft-b13">
-                                        <rect key="frame" x="284.5" y="204" width="455" height="499"/>
+                                        <rect key="frame" x="284.5" y="204" width="455" height="590"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="supremieLogo" translatesAutoresizingMaskIntoConstraints="NO" id="pzB-kc-O0E">
                                                 <rect key="frame" x="0.5" y="0.0" width="454" height="147"/>
@@ -971,13 +976,21 @@ KASIH</string>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Id:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tax-8B-C64">
+                                                <rect key="frame" x="0.0" y="549" width="455" height="41"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="aAW-hE-C6Y" firstAttribute="leading" secondItem="hlz-Ft-b13" secondAttribute="leading" constant="87" id="F5c-6h-IId"/>
+                                            <constraint firstAttribute="trailing" secondItem="tax-8B-C64" secondAttribute="trailing" id="Hbl-Yj-HlJ"/>
+                                            <constraint firstItem="tax-8B-C64" firstAttribute="leading" secondItem="hlz-Ft-b13" secondAttribute="leading" id="WGb-Th-6x8"/>
                                         </constraints>
                                     </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mangkok" translatesAutoresizingMaskIntoConstraints="NO" id="pUO-lN-nih">
-                                        <rect key="frame" x="0.0" y="803" width="1024" height="104"/>
+                                        <rect key="frame" x="0.0" y="894" width="1024" height="104"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="104" id="dkW-7N-C37"/>
                                         </constraints>
@@ -1002,10 +1015,13 @@ KASIH</string>
                             <constraint firstItem="yH8-7t-Xdt" firstAttribute="centerY" secondItem="weM-Ly-dJM" secondAttribute="centerY" id="qxQ-8a-Z7s"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="orderID" destination="tax-8B-C64" id="uGa-uL-Anc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sSX-1V-ehh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6274" y="-51"/>
+            <point key="canvasLocation" x="6273.6328125" y="-51.390922401171302"/>
         </scene>
     </scenes>
     <resources>
