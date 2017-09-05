@@ -71,7 +71,14 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"companyLogoCell", for: indexPath) as! CompanyCollectionViewCell
         
-        cell.objDrink = arrayCompanyList[indexPath.row]
+        cell.objDrink.image =   UIImage(named: arrayCompanyList[indexPath.row].brand)
+        
+//        if ((UIImage(named: (arrayCompanyList[indexPath.row].brand?.imgUrl)!)) != nil){
+//            cell.objDrink.image = UIImage(named: (objCompany?.imgUrl)!)
+//        }else{
+//            cell.objDrink.image = UIImage(named: "Default")
+//        }
+
         
         return cell
     }

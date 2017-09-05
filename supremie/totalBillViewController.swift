@@ -10,13 +10,18 @@ import UIKit
 
 class totalBillViewController: UIViewController, UITableViewDataSource,UITableViewDelegate
  {
+    var finalTotalPrice: Int = 0
     static var orderNumber:Int = 0
     var tableData:[SuperOfAll] = [SuperOfAll]()
 
+    @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var totalSum: UILabel!
     @IBAction func cash(_ sender: Any) {
 //        showAlert(message: "cash")
         self.createRequestrDict(paymentType: "cash" )
     }
+    @IBOutlet weak var totalBill: UILabel!
+    @IBOutlet weak var tax: UILabel!
     
     @IBAction func card(_ sender: Any) {
 //        showAlert(message: "card")
@@ -27,6 +32,13 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (table.contentSize.height < table.frame.size.height) {
+            table.isScrollEnabled = false
+        }
+        else {
+            table.isScrollEnabled = true
+        }
         
         let obj:SuperOfAll = SuperOfAll()
         obj.name = (SelectedModel.sharedInstant.selectedMie?.flavour)!
@@ -45,12 +57,23 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         }
         for drink in SelectedModel.sharedInstant.selectedDrinks {
             let obj:SuperOfAll = SuperOfAll()
-            obj.name = drink.flavour
+            obj.name = drink.brand+" "+drink.flavour
             obj.price=drink.price
             obj.qty=drink.count
             tableData.append(obj)
-            
         }
+        var sum:Int = 0
+        for each in tableData
+        {
+            sum = sum + each.price
+        }
+        
+        let Tax:Int = (sum * 15)/100
+        
+        finalTotalPrice = Tax + sum
+        self.tax.text = "RP"+String(Tax)
+        self.totalSum.text = "RP"+String(sum)
+        self.fianlTotalPrice.text = "RP"+String(finalTotalPrice)
         
         
         // For Button and title in navigation bar
@@ -84,9 +107,9 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         
 //        let obj1 = tableData[indexPath.row]
         cell.iteamName.text = tableData[indexPath.row].name
-        cell.Qty.text = String(tableData[indexPath.row].qty)
-        cell.price.text = String(tableData[indexPath.row].price)
-        
+        cell.Qty.text = "Qty"+String(tableData[indexPath.row].qty)
+        cell.price.text = "RP"+String(tableData[indexPath.row].price)
+
         return cell
 
     }

@@ -11,9 +11,9 @@ import UIKit
 class thankYouViewController: UIViewController {
     
     @IBOutlet weak var orderID: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        sleep(1)
         orderID.text = "Order ID:"+String(totalBillViewController.orderNumber)
         
     }
