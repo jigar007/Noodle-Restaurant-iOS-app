@@ -8,44 +8,24 @@
 
 import UIKit
 
-class ForthViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource{
+class ForthViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
  
-    var toppingsList = [String]()
-    var toppingDictionary = [Int: Int]()
-    var selectedIndexPath:Int = 0
-    var selectedCount:Int = 0
-    var countDictionary = [Int: Int]()
-    
-    var selectedToppingList = [JSONTopping]()
+    var toppingList = InfoDetail.sharedInstant.objItem.toppings.filter { (topping) -> Bool in
+        return topping.stock >= 3
+    }
  
     @IBOutlet weak var toppingsCollectionView: UICollectionView!
-    @IBOutlet weak var toppingsButton: UIButton!
+    
     @IBAction func toppingSelect(_ sender: Any) {
+       SelectedModel.sharedInstant.selectedToppings = toppingList.filter({ (topping) -> Bool in
+            return topping.count > 0
+       })
+   // performSegue(withIdentifier: "forthToChilli", sender: nil)
     }
-       
-//        for (index,count) in toppingDictionary{
-//            for item in InfoDetail.sharedInstant.objItem.toppings
-//            {
-//                if item.id == index {
-//                    let toppingItem : JSONTopping
-//                    toppingItem.id = item.id
-//                    toppingItem.price = item.price
-//                    toppingItem.quantity = count
-//                }
-//            }
-//        }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
-        for item in InfoDetail.sharedInstant.objItem.toppings
-        {
-            if item.stock>3 {
-                toppingsList.append(item.name)
-                
-            }
-        }
         
         // For Button and title in navigation bar
         self.title = "Pilih Topping"
@@ -83,74 +63,39 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-            if (selectedCount < 3 && selectedIndexPath == indexPath.row ){
-                selectedIndexPath = indexPath.row
-                selectedCount = selectedCount + 1
-                self.countDictionary[selectedIndexPath] = selectedCount
-                collectionView.reloadData()
-            }else{
-                selectedIndexPath = indexPath.row
-                selectedCount = selectedCount + 1
-                self.countDictionary[selectedIndexPath] = selectedCount
-                collectionView.reloadData()
-            }
-    }
-    
-    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return toppingsList.count
+        return toppingList.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"toppingsCell", for: indexPath) as! toppingsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"toppingsCell", for: indexPath) as! toppingsCollectionViewCell        
         
-        cell.toppingsPicture.image = UIImage(named: toppingsList[indexPath.row])
-        
-        if ((UIImage(named: toppingsList[indexPath.row])) != nil){
-            cell.toppingsPicture.image = UIImage(named: toppingsList[indexPath.row])
-        }else{
-            cell.toppingsPicture.image = UIImage(named: "Default")
-        }
-        
-        cell.toppingsName.text =  toppingsList[indexPath.row]
-        
+        cell.objTopping = toppingList[indexPath.row]
         cell.tag = indexPath.row
-      
-        
-        for (index,count) in self.countDictionary{
-            if indexPath.row == index{
-            
-                cell.toppingsQuantity.text = "\(count)"
-            }
-            else{
-                cell.toppingsQuantity.text = "\(0)"
-            }
-        }
-        
         cell.clickComplition = { (count, index) in
-            
-            self.countDictionary[index] = count
-            
-            self.toppingsButton.backgroundColor = UIColor.red
-            
-            self.toppingDictionary[index+1] = count
-            
-            //            for item in InfoDetail.sharedInstant.objItem.toppings
-            //            {
-            //                if item.id == index + 1{
-            //                    var toppingItem : JSONTopping
-            //                    toppingItem.id = item.id
-            //                    toppingItem.price = item.price
-            //                    toppingItem.quantity = count
-            //                }
-            //            }
-            collectionView.reloadData()
+            self.enableDisbleButton()
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath) as? noodleCollectionViewCell
+        cell?.increnmentValue()
+    }
+    
+    func enableDisbleButton()  {
+        let tempList = toppingList.filter { (topping) -> Bool in
+            return topping.count > 0
         }
         
-        return cell
+        guard tempList.count > 0 else {
+//            isEnabled = false
+            return
+        }
+        
+//        isEnabled = true
     }
 }

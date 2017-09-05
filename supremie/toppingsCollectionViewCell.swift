@@ -16,34 +16,61 @@ class toppingsCollectionViewCell: UICollectionViewCell {
     
     var clickComplition : ((_ totalCount:Int,_ cellIndex:Int) -> Void)? = nil
     
+    var objTopping:Topping? {
+        didSet {
+            if ((UIImage(named: (objTopping?.imgUrl)!)) != nil){
+                toppingsPicture.image = UIImage(named: (objTopping?.imgUrl)!)
+            }else{
+                toppingsPicture.image = UIImage(named: "Default")
+            }
+            
+            toppingsName.text =  objTopping!.name
+            toppingsQuantity.text = String(describing: objTopping!.count)
+        }
+    }
+    
+    
     @IBAction func toppingsPlus(_ sender: Any) {
         
-        var count:Int = Int(toppingsQuantity.text!)!
-        
-        if count < 3 {
-            count = count + 1
-            toppingsQuantity.text = "\(count)"
-            updateStatus(count: count)
-        }
+        increnmentValue()
     }
     
     @IBAction func toppingsMinus(_ sender: Any) {
         
+        decrementValue()
+    }
+    
+    public func increnmentValue() {
+        var count:Int = Int(toppingsQuantity.text!)!
+        
+        if count < 3 {
+            count = count + 1
+            updateStatus(count: count)
+            callComplition()
+        }
+    }
+    
+    public func decrementValue()  {
         var count:Int = Int(toppingsQuantity.text!)!
         
         if count > 0 {
             count = count - 1
-            toppingsQuantity.text = "\(count)"
             updateStatus(count: count)
-            
+            callComplition()
         }
+        
     }
     
-    private func updateStatus(count: Int) {
-        
+    public func updateStatus(count: Int) {
+        objTopping?.count = count
+        toppingsQuantity.text = "\(count)"
+    }
+    
+    private func callComplition() {
         guard clickComplition != nil else {
             return
         }
-        clickComplition!(count, tag)
+        clickComplition!((objTopping?.count)!, tag)
     }
+    
 }

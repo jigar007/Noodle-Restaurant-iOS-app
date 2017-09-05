@@ -12,14 +12,24 @@ class InfoDetail {
     
     static let sharedInstant:InfoDetail = InfoDetail()
     var objItem:Mie!
-    var JSONItem:Order!
     
     static var selectedName:String = ""
     
-    static var dining_method:String = ""
     static var id: Int = 0
     static var quantity_mie:Int = 0
     static var price:Int = 0
     
+}
+
+class SelectedModel {
+    static let sharedInstant: SelectedModel = SelectedModel()
+    
+    var selectedMie: Drink?
+    var selectedToppings = [Topping]()
+    
+    var selectedDrinks = [Drink]()
+    var dining_method:String = ""
+    
+    var chilliLevel = 0
     
 }

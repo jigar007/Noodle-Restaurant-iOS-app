@@ -9,24 +9,18 @@
 import UIKit
 
 class SecondViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
-
-
-    var companyNamesList = [String]()
-    var selectedName : String = ""
+    
+    var arrayCompanyList = [Drink]()
     
     var navBar: UINavigationBar = UINavigationBar()
-
+    
     @IBOutlet weak var companyList: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        var companys = [String]()
-        for item in InfoDetail.sharedInstant.objItem.mie {
-            companys.append(item.brand)
-        }
-        companyNamesList = Array(Set(companys))
         
+        filterArray()
+                
         // For Button and title in navigation bar
         self.title = "PILIH MIE INSTAN"
         
@@ -45,7 +39,7 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
         let barButton = UIBarButtonItem(customView: btnLeftMenu)
         self.navigationItem.leftBarButtonItem = barButton
         
-//         For making collection view device independent
+        //         For making collection view device independent
         var screenSize: CGRect!
         var screenWidth: CGFloat!
         var screenHeight: CGFloat!
@@ -67,27 +61,41 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
-
+    
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return companyNamesList.count
+        return arrayCompanyList.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-            
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"companyLogoCell", for: indexPath) as! CompanyCollectionViewCell
         
-            if ((UIImage(named: companyNamesList[indexPath.row])) != nil){
-            cell.company.image = UIImage(named: companyNamesList[indexPath.row])
-                }else{
-                cell.company.image = UIImage(named: "Default")
-                }
-            return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"companyLogoCell", for: indexPath) as! CompanyCollectionViewCell
+        
+        cell.objDrink = arrayCompanyList[indexPath.row]
+        
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       performSegue(withIdentifier: "secondToThird", sender: self)
-        InfoDetail.selectedName = companyNamesList[indexPath.row]
+        SelectedModel.sharedInstant.selectedMie = arrayCompanyList[indexPath.row]
+        performSegue(withIdentifier: "secondToThird", sender: self)
+        
     }
-
+    
+    private func filterArray() {
+        var companys = [String]()
+        for item in InfoDetail.sharedInstant.objItem.mie {
+            companys.append(item.brand)
+        }
+    
+        companys = Array(Set(companys))
+        
+        for filterName in companys {
+            
+            arrayCompanyList.append(InfoDetail.sharedInstant.objItem.mie.filter({ (item) -> Bool in
+                return item.brand == filterName
+            }).first!)
+        }
+    }
 }
+

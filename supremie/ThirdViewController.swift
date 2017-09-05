@@ -10,40 +10,36 @@ import UIKit
 
 class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource
 {
-    var noodleList = [String]()
-    var noodleIdList = [Int]()
-    var noodleFlavor:String = ""
-    var selectedIndexPath:Int = 0
-    var selectedCount:Int = 0
+    
+    var flavourList = InfoDetail.sharedInstant.objItem.mie.filter { (company) -> Bool in
+        return company.brand == SelectedModel.sharedInstant.selectedMie?.brand && company.stock >= 3
+    }
     
     @IBAction func noodleRed(_ sender: Any) {
     }
     @IBOutlet weak var noodleCollectionView: UICollectionView!
     
     @IBOutlet weak var noodleButton: UIButton!
-
+    
     @IBAction func noodelAction(_ sender: Any) {
         
-        for item in InfoDetail.sharedInstant.objItem.mie
-        {
-            if item.id == selectedIndexPath + 1 && item.flavour ==  noodleFlavor {
-                InfoDetail.id = selectedIndexPath + 1
-                InfoDetail.quantity_mie = selectedCount
-                InfoDetail.price = item.price
-            }
-        }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for item in InfoDetail.sharedInstant.objItem.mie
-        {
-            if item.stock>3 && item.brand ==  InfoDetail.selectedName {
-                noodleList.append(item.flavour)
-                noodleIdList.append(item.id)
-            }
-        }
-
+        print(InfoDetail.sharedInstant.objItem.mie.count)
+        
+        //        for item in InfoDetail.sharedInstant.objItem.mie
+        //        {
+        //            if item.stock>3 && item.brand ==  InfoDetail.selectedName {
+        //                noodleList.append(item.flavour)
+        //                noodleIdList.append(item.id)
+        //            }
+        //        }
+        
+        
+        
         // For Button and title in navigation bar
         self.title = "Pilih Rasa"
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
@@ -81,64 +77,58 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         _ = self.navigationController?.popViewController(animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
-        if(selectedIndexPath == indexPath.row){
-            if (selectedCount < 3){
-                selectedIndexPath = indexPath.row
-                selectedCount = selectedCount + 1
-                collectionView.reloadData()
-            }
-        }else {
-            selectedIndexPath = indexPath.row
-            selectedCount = 1
-            collectionView.reloadData()
-        }
-        if (selectedCount == 0){
-            self.noodleButton.backgroundColor = UIColor(red: 146/255, green: 148/255, blue: 151/255, alpha: 1.0)
-        }else{
-            noodleButton.backgroundColor=UIColor.red
-        }
+        
+        let cell = collectionView.cellForItem(at: indexPath) as? noodleCollectionViewCell
+        cell?.increnmentValue()
     }
-
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return noodleList.count
+        return  flavourList.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"noodleCell", for: indexPath) as! noodleCollectionViewCell
         
-        if ((UIImage(named: noodleList[indexPath.row])) != nil){
-            cell.noodlePicture.image = UIImage(named: noodleList[indexPath.row])
-        }else{
-            cell.noodlePicture.image = UIImage(named: "Default")
-        }
+        cell.objCompany = flavourList[indexPath.row]
         
-        cell.noodleName.text =  noodleList[indexPath.row]
-        
-        if indexPath.row == self.selectedIndexPath{
-            
-            cell.noodleQunatity.text = "\(self.selectedCount)"
-        }else{
-            cell.noodleQunatity.text = "\(0)"
-            
-        }
         cell.tag = indexPath.row
-
+        
         cell.clickComplition = { (count, index) in
-            
-            self.noodleFlavor = self.noodleList[indexPath.row]
-            self.selectedIndexPath = index
-            self.selectedCount = count
-            if (self.selectedCount == 0){
-                self.noodleButton.backgroundColor = UIColor(red: 146/255, green: 148/255, blue: 151/255, alpha: 1.0)
-            }else{
-                self.noodleButton.backgroundColor=UIColor.red
-            }
-            collectionView.reloadData()
+            self.enableDisableNextButton()
+            self.resetCountVariable()
+            cell.updateStatus(count: count)
         }
         
         return cell
     }
     
+    private func resetCountVariable() {
+        flavourList = flavourList.map { (drink:Drink) -> Drink in
+            drink.count = 0
+            return drink
+        }
+        
+        noodleCollectionView.reloadData()
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "thirdToForth" {
+            
+        }
+    }
+    
+    func enableDisableNextButton()  {
+        let tempList = flavourList.filter { (flavour) -> Bool in
+            return flavour.count > 0
+        }
+        
+        guard tempList.count > 0 else {
+            noodleButton.isEnabled = false
+            return
+        }
+        
+        noodleButton.isEnabled = true
+    }
 }

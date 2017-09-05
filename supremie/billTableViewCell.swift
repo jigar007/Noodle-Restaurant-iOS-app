@@ -12,8 +12,8 @@ class billTableViewCell: UITableViewCell {
 
     @IBOutlet weak var iteamName: UILabel!
     @IBOutlet weak var Qty: UILabel!
-    
     @IBOutlet weak var cancelBtn: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

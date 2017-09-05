@@ -70,6 +70,7 @@ class chilliViewController: UIViewController,UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        SelectedModel.sharedInstant.chilliLevel = indexPath.row
         performSegue(withIdentifier: "chilliToDrinks", sender: self)
     }
 

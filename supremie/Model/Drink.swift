@@ -16,6 +16,10 @@ class Drink : NSObject, NSCoding{
 	var price : Int!
 	var stock : Int!
     
+    //New added to manage total count
+    var count = 0
+    
+   
     /**
 	 * Instantiate the instance using the passed dictionary values to set the properties values
 	 */
@@ -96,5 +100,4 @@ class Drink : NSObject, NSCoding{
 		}
 
 	}
-
 }

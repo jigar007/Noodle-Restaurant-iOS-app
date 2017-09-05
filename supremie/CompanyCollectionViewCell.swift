@@ -11,4 +11,14 @@ import UIKit
 class CompanyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var company: UIImageView!
     
+    var objDrink : Drink? {
+        didSet {
+            if ((UIImage(named: (objDrink?.brand)!)) != nil){
+                company.image = UIImage(named: (objDrink?.brand)!)
+            }else{
+                company.image = UIImage(named: "Default")
+            }
+        }
+    }
+    
 }

@@ -15,7 +15,11 @@ class Topping : NSObject, NSCoding{
 	var price : Int!
 	var stock : Int!
 
-
+    //New added to manage selected count 
+    var count = 0
+    
+    
+    
 	/**
 	 * Instantiate the instance using the passed dictionary values to set the properties values
 	 */

@@ -10,10 +10,13 @@ import UIKit
 
 class FirstViewController: UIViewController {
 
+    @IBOutlet weak var btnMakan: UIButton!
+    @IBOutlet weak var btnBungkus: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let url = URL(string: "http://139.59.96.68:8000/stock")
-        
+        disableButton()
         URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
             guard let data = data, error == nil else { return }
             
@@ -21,9 +24,10 @@ class FirstViewController: UIViewController {
 
                 let json = try JSONSerialization.jsonObject(with: data)as? [String:Any]
                 InfoDetail.sharedInstant.objItem = Mie(fromDictionary: json!)
+                self.enableButton()
                 
             } catch let error as NSError {
-                print(error)
+                print(error)                
             }
         }).resume()
     }
@@ -43,13 +47,23 @@ class FirstViewController: UIViewController {
     @IBAction func quickOrder(_ sender: Any) {
         
         performSegue(withIdentifier: "firstToSecond", sender: self)
-        InfoDetail.dining_method = "makan disini"
+        SelectedModel.sharedInstant.dining_method = "makan sini"
     }
     
     @IBAction func takeAway(_ sender: Any) {
         
         performSegue(withIdentifier: "firstToSecond", sender: self)
-        InfoDetail.dining_method = "bungkus"
+        SelectedModel.sharedInstant.dining_method = "bungkus"
     }
 
+    private func enableButton() {
+        btnMakan.isUserInteractionEnabled = true
+        btnBungkus.isUserInteractionEnabled = true
+    }
+    
+    private func disableButton() {
+        btnMakan.isUserInteractionEnabled = false
+        btnBungkus.isUserInteractionEnabled = false
+    }
+   
 }

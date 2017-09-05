@@ -15,32 +15,58 @@ class drinksCollectionViewCell: UICollectionViewCell {
     
     var clickComplition : ((_ totalCount:Int,_ cellIndex:Int) -> Void)? = nil
     
+    var objDrinks : Drink? {
+        didSet {
+            if ((UIImage(named: (objDrinks?.imgUrl)!)) != nil){
+                drinksPicture.image = UIImage(named: (objDrinks?.imgUrl)!)
+            }else{
+                drinksPicture.image = UIImage(named: "Default")
+            }
+            
+            drinksName.text =  (objDrinks?.brand)!+" "+(objDrinks?.flavour)!
+            drinksQunatity.text = String(describing: objDrinks!.count)
+        }
+    }
+    
+    
     @IBAction func drinksPlus(_ sender: Any) {
         
-        var count:Int = Int(drinksQunatity.text!)!
-         if count < 2 {
-            count = count + 1
-            drinksQunatity.text = "\(count)"
-            updateStatus(count: count)
-        }
+        increnmentValue()
     }
     
     @IBAction func drinksMinus(_ sender: Any) {
         
+       decrementValue()
+    }
+    public func increnmentValue() {
+        var count:Int = Int(drinksQunatity.text!)!
+        
+        if count < 3 {
+            count = count + 1
+            updateStatus(count: count)
+            callComplition()
+        }
+    }
+    
+    public func decrementValue()  {
         var count:Int = Int(drinksQunatity.text!)!
         
         if count > 0 {
             count = count - 1
-            drinksQunatity.text = "\(count)"
             updateStatus(count: count)
+            callComplition()
         }
-        
     }
-    private func updateStatus(count: Int) {
-        
+    
+    public func updateStatus(count: Int) {
+        objDrinks?.count = count
+        drinksQunatity.text = "\(count)"
+    }
+    
+    private func callComplition() {
         guard clickComplition != nil else {
             return
         }
-        clickComplition!(count, tag)
+        clickComplition!((objDrinks?.count)!, tag)
     }
 }

@@ -10,23 +10,12 @@ import UIKit
 
 class drinksViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource  {
 
-    var drinksList = [String]()
-    var selectedIndexPath:Int = 0
-    var selectedCount:Int = 0
-    
-    @IBOutlet weak var drinksButton: UIButton!
+    var drinksList = InfoDetail.sharedInstant.objItem.drinks
 
     @IBOutlet weak var drinksCiewController: UICollectionView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        for item in InfoDetail.sharedInstant.objItem.drinks
-        {
-            if item.stock>0 {
-                drinksList.append(item.brand+" "+item.flavour)
-            }
-        }
         
         // For Button and title in navigation bar
         self.title = "Pilih Minuman & ES"
@@ -58,54 +47,36 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8
         drinksCiewController.collectionViewLayout = layout
+        
     }
+    
     
     func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-            if (selectedCount < 2){
-                selectedIndexPath = indexPath.row
-                selectedCount = selectedCount + 1
-                drinksButton.backgroundColor=UIColor.red
-                collectionView.reloadData()
-            }
- 
-    }
-    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return drinksList.count
+        return drinksList!.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"drinksCell", for: indexPath) as! drinksCollectionViewCell
         
-        if ((UIImage(named: drinksList[indexPath.row])) != nil){
-            cell.drinksPicture.image = UIImage(named: drinksList[indexPath.row])
-        }else{
-            cell.drinksPicture.image = UIImage(named: "Default")
-        }
-        
-        cell.drinksName.text =  drinksList[indexPath.row]
-        
-//        if indexPath.row == self.selectedIndexPath{
-//            cell.drinksQunatity.text = "\(self.selectedCount)"
-//        }else{
-//            cell.drinksQunatity.text = "\(0)"
-//        }
+        cell.objDrinks = drinksList?[indexPath.row]
         cell.tag = indexPath.row
         cell.clickComplition = { (count, index) in
-            self.drinksButton.backgroundColor = UIColor.red
-            self.selectedIndexPath = index
-            self.selectedCount = count
-            self.drinksButton.backgroundColor = UIColor.red
-            collectionView.reloadData()
-
+            
         }
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "drinksToBills" {
+            SelectedModel.sharedInstant.selectedDrinks = (drinksList?.filter({ (drink) -> Bool in
+                return drink.count > 0
+            }))!
+        }
     }
 
 }
