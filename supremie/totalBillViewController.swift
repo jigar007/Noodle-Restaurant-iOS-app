@@ -17,14 +17,12 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var totalSum: UILabel!
     @IBAction func cash(_ sender: Any) {
-//        showAlert(message: "cash")
         self.createRequestrDict(paymentType: "cash" )
     }
     @IBOutlet weak var totalBill: UILabel!
     @IBOutlet weak var tax: UILabel!
     
     @IBAction func card(_ sender: Any) {
-//        showAlert(message: "card")
         self.createRequestrDict(paymentType: "card" )
     }
     
@@ -71,9 +69,9 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         let Tax:Int = (sum * 15)/100
         
         finalTotalPrice = Tax + sum
-        self.tax.text = "RP"+String(Tax)
-        self.totalSum.text = "RP"+String(sum)
-        self.fianlTotalPrice.text = "RP"+String(finalTotalPrice)
+        self.tax.text = "RP "+String(Tax)
+        self.totalSum.text = "RP "+String(sum)
+        self.fianlTotalPrice.text = "RP "+String(finalTotalPrice)
         
         
         // For Button and title in navigation bar
@@ -107,8 +105,8 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         
 //        let obj1 = tableData[indexPath.row]
         cell.iteamName.text = tableData[indexPath.row].name
-        cell.Qty.text = "Qty"+String(tableData[indexPath.row].qty)
-        cell.price.text = "RP"+String(tableData[indexPath.row].price)
+        cell.Qty.text = "Qty "+String(tableData[indexPath.row].qty)
+        cell.price.text = "RP "+String(tableData[indexPath.row].price)
 
         return cell
 

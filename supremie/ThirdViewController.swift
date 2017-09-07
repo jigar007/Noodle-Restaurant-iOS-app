@@ -99,6 +99,8 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
             self.resetCountVariable()
             cell.updateStatus(count: count)
             
+            cell.backgroundColor = UIColor.white
+            
             if (count == 0){
                 self.noodleButton.backgroundColor = UIColor(red: 146/255, green: 148/255, blue: 151/255, alpha: 1.0)
             }else{

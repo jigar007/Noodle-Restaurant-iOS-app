@@ -20,7 +20,7 @@ class chilliViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         super.viewDidLoad()
         // For Button and title in navigation bar
-        self.title = "Pilih cabe meet"
+        self.title = "Pilih Level Pedas"
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
@@ -44,7 +44,7 @@ class chilliViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 4, bottom: 8, right: 4)
-        layout.itemSize = CGSize(width: (screenWidth/2)-8, height: (screenHeight/3)-40)
+        layout.itemSize = CGSize(width: (screenWidth)-8, height: (screenHeight/3)-40)
         
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8

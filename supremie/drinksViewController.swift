@@ -43,7 +43,7 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 4, bottom: 8, right: 4)
-        layout.itemSize = CGSize(width: (screenWidth/2)-8, height: (screenHeight/3)-40)
+        layout.itemSize = CGSize(width: (screenWidth/3)-8, height: (screenHeight/3)-40)
         
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8
