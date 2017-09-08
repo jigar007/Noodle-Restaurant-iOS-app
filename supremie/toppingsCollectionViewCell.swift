@@ -26,6 +26,7 @@ class toppingsCollectionViewCell: UICollectionViewCell {
             
             toppingsName.text =  objTopping!.name
             toppingsQuantity.text = String(describing: objTopping!.count)
+            manageBackGroundColor()
         }
     }
     
@@ -64,6 +65,7 @@ class toppingsCollectionViewCell: UICollectionViewCell {
     public func updateStatus(count: Int) {
         objTopping?.count = count
         toppingsQuantity.text = "\(count)"
+        manageBackGroundColor()
     }
     
     private func callComplition() {
@@ -71,6 +73,16 @@ class toppingsCollectionViewCell: UICollectionViewCell {
             return
         }
         clickComplition!((objTopping?.count)!, tag)
+        
     }
     
+    private func manageBackGroundColor() {
+        let count:Int = Int(toppingsQuantity.text!)!
+        
+        if count > 0 {
+            makeHilighted()
+        } else {
+            makeNormal()
+        }
+    }
 }
