@@ -15,6 +15,11 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let backButton = UIBarButtonItem(title: "Kembali", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        UINavigationBar.appearance().tintColor = UIColor.white
+        
         let url = URL(string: "http://139.59.96.68:8000/stock")
         disableButton()
         URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in

@@ -76,17 +76,9 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         
         // For Button and title in navigation bar
         self.title = "Review Pesanan"
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
-        let btnLeftMenu: UIButton = UIButton()
-        btnLeftMenu.setImage(UIImage(named: "back"), for: UIControlState())
-        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 19, height: 49)
-        btnLeftMenu.addTarget(self, action: #selector(totalBillViewController.onClcikBack), for: UIControlEvents.touchUpInside)
-        
-        btnLeftMenu.titleEdgeInsets = UIEdgeInsetsMake(10,10,10,10)
-        let barButton = UIBarButtonItem(customView: btnLeftMenu)
-        self.navigationItem.leftBarButtonItem = barButton
+        let backButton = UIBarButtonItem(title: "Kembali", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = backButton
         
     }
     func onClcikBack() {
@@ -103,7 +95,6 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         
         let cell = tableView.dequeueReusableCell(withIdentifier:"billCell", for: indexPath) as!billTableViewCell
         
-//        let obj1 = tableData[indexPath.row]
         cell.iteamName.text = tableData[indexPath.row].name
         cell.Qty.text = "Qty "+String(tableData[indexPath.row].qty)
         cell.price.text = "RP "+String(tableData[indexPath.row].price)
@@ -112,24 +103,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
 
     }
 
-    
-//    func showAlert(message:String)  {
-//        
-//        let alertController = UIAlertController(title: "Warning!", message: "Are you sure want to pay by " + message, preferredStyle: .alert)
-//        
-//        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-//        }
-//        
-//        let actionOk = UIAlertAction(title: "Ok", style: .default) { (action) in
-//            self.createRequestrDict(paymentType: message)
-//        }
-//        
-//        alertController.addAction(actionCancel)
-//        alertController.addAction(actionOk)
-//        
-//        present(alertController, animated: true, completion: nil)
-//    }
-//    
+  
     func createRequestrDict(paymentType:String)  {
         
         var requestDict = [String : Any]()

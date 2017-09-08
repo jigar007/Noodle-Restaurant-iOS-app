@@ -30,16 +30,10 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
         self.navigationController?.navigationBar.barTintColor = UIColor.red
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 100.0)
         
-        let btnLeftMenu: UIButton = UIButton()
+        let backButton = UIBarButtonItem(title: "Kembali", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = backButton
         
-        btnLeftMenu.setImage(UIImage(named: "back"), for: UIControlState())
-        btnLeftMenu.frame = CGRect(x: 10, y: 10, width: 50 , height: 100)
-        
-        btnLeftMenu.addTarget(self, action: #selector(SecondViewController.onClcikBack), for: UIControlEvents.touchUpInside)
-        let barButton = UIBarButtonItem(customView: btnLeftMenu)
-        self.navigationItem.leftBarButtonItem = barButton
-        
-        //         For making collection view device independent
+        // For making collection view device independent
         var screenSize: CGRect!
         var screenWidth: CGFloat!
         var screenHeight: CGFloat!

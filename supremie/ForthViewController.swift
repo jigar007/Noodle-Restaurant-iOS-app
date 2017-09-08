@@ -12,6 +12,7 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
     @IBOutlet weak var toppingsButton: UIButton!
  
     var toppingList = InfoDetail.sharedInstant.objItem.toppings.filter { (topping) -> Bool in
+        print(topping.count)
         return topping.stock >= 3
     }
  
@@ -26,20 +27,11 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         // For Button and title in navigation bar
         self.title = "Pilih Topping"
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-        
-        let btnLeftMenu: UIButton = UIButton()
-        btnLeftMenu.setImage(UIImage(named: "back"), for: UIControlState())
-        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 19, height: 49)
-        btnLeftMenu.addTarget(self, action: #selector(ForthViewController.onClcikBack), for: UIControlEvents.touchUpInside)
-        
-        btnLeftMenu.titleEdgeInsets = UIEdgeInsetsMake(10,10,10,10)
-        let barButton = UIBarButtonItem(customView: btnLeftMenu)
-        self.navigationItem.leftBarButtonItem = barButton
+   
+        let backButton = UIBarButtonItem(title: "Kembali", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = backButton
         
         // For making collection view device independent
         var screenSize: CGRect!
@@ -65,6 +57,8 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
     }
         
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        print("topp",toppingList.count)
+
         return toppingList.count
     }
     
@@ -81,7 +75,6 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
                 self.toppingsButton.backgroundColor = UIColor(red: 227/255, green: 41/255, blue: 48/255, alpha: 1.0)
             }
             self.enableDisbleButton()
-            
         }
         return cell
     }
@@ -96,10 +89,8 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         let tempList = toppingList.filter { (topping) -> Bool in
             return topping.count > 0
         }
-        
         guard tempList.count > 0 else {
             return
         }
-        
     }
 }

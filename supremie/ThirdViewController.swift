@@ -42,18 +42,9 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
         // For Button and title in navigation bar
         self.title = "Pilih Rasa"
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-        
-        let btnLeftMenu: UIButton = UIButton()
-        btnLeftMenu.setImage(UIImage(named: "back"), for: UIControlState())
-        btnLeftMenu.frame = CGRect(x: 0, y: 0, width: 19, height: 49)
-        btnLeftMenu.addTarget(self, action: #selector(ThirdViewController.onClcikBack), for: UIControlEvents.touchUpInside)
-        
-        btnLeftMenu.titleEdgeInsets = UIEdgeInsetsMake(10,10,10,10)
-        let barButton = UIBarButtonItem(customView: btnLeftMenu)
-        self.navigationItem.leftBarButtonItem = barButton
-        
+        let backButton = UIBarButtonItem(title: "Kembali", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = backButton
+
         // For making collection view device independent
         var screenSize: CGRect!
         var screenWidth: CGFloat!
