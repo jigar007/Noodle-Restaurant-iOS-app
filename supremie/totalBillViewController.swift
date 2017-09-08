@@ -13,6 +13,10 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     var finalTotalPrice: Int = 0
     static var orderNumber:Int = 0
     var tableData:[SuperOfAll] = [SuperOfAll]()
+    
+    // Currency formatter
+    let formatter = NumberFormatter()
+ 
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var totalSum: UILabel!
@@ -31,6 +35,10 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        formatter.numberStyle = NumberFormatter.Style.decimal
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale(identifier: "DE")
+
         if (table.contentSize.height < table.frame.size.height) {
             table.isScrollEnabled = false
         }
@@ -69,9 +77,10 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         let Tax:Int = (sum * 15)/100
         
         finalTotalPrice = Tax + sum
-        self.tax.text = "RP "+String(Tax)
-        self.totalSum.text = "RP "+String(sum)
-        self.fianlTotalPrice.text = "RP "+String(finalTotalPrice)
+        self.tax.text = "RP "+String(describing: formatter.string(from: Tax as NSNumber)!)
+        self.totalSum.text = "RP "+String(describing: formatter.string(from: sum as NSNumber)!)
+        self.fianlTotalPrice.text = "RP "+String(describing: formatter.string(from: finalTotalPrice as NSNumber)!)
+
         
         
         // For Button and title in navigation bar
@@ -97,7 +106,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         
         cell.iteamName.text = tableData[indexPath.row].name
         cell.Qty.text = "Qty "+String(tableData[indexPath.row].qty)
-        cell.price.text = "RP "+String(tableData[indexPath.row].price)
+        cell.price.text = "RP "+String(describing: formatter.string(from: tableData[indexPath.row].price as NSNumber)!)
 
         return cell
 
