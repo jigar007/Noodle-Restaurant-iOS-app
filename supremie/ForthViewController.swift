@@ -12,7 +12,6 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
     @IBOutlet weak var toppingsButton: UIButton!
  
     var toppingList = InfoDetail.sharedInstant.objItem.toppings.filter { (topping) -> Bool in
-        print(topping.count)
         return topping.stock >= 3
     }
  
@@ -57,8 +56,6 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
     }
         
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        print("topp",toppingList.count)
-
         return toppingList.count
     }
     

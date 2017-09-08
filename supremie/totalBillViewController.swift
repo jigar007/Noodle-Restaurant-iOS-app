@@ -17,6 +17,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     // Currency formatter
     let formatter = NumberFormatter()
  
+    @IBOutlet weak var chililevel: UILabel!
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var totalSum: UILabel!
@@ -39,16 +40,11 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         formatter.numberStyle = .decimal
         formatter.locale = Locale(identifier: "DE")
 
-        if (table.contentSize.height < table.frame.size.height) {
-            table.isScrollEnabled = false
-        }
-        else {
-            table.isScrollEnabled = true
-        }
-        
         let obj:SuperOfAll = SuperOfAll()
         obj.name = (SelectedModel.sharedInstant.selectedMie?.flavour)!
+        
         obj.qty = (SelectedModel.sharedInstant.selectedMie?.count)!
+
         obj.price = (SelectedModel.sharedInstant.selectedMie?.price)!
         
         tableData.append(obj)
@@ -81,7 +77,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         self.totalSum.text = "RP "+String(describing: formatter.string(from: sum as NSNumber)!)
         self.fianlTotalPrice.text = "RP "+String(describing: formatter.string(from: finalTotalPrice as NSNumber)!)
 
-        
+        self.chililevel.text = "Pilih Level Pedas Level " + String(SelectedModel.sharedInstant.chilliLevel)
         
         // For Button and title in navigation bar
         self.title = "Review Pesanan"
@@ -124,7 +120,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         var mieDict = [String:Any]()
         mieDict["id"] = SelectedModel.sharedInstant.selectedMie?.id
         mieDict["quantity_mie"] = SelectedModel.sharedInstant.selectedMie?.count
-        mieDict["quantity_whole"] = SelectedModel.sharedInstant.selectedMie?.count
+        mieDict["quantity_whole"] = "0" // Do not touch
         mieDict["price"] = SelectedModel.sharedInstant.selectedMie?.price
         mieDict["extra_chili"] = SelectedModel.sharedInstant.chilliLevel
         mieDict["note"]=""

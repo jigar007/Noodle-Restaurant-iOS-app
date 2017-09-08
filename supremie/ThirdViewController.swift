@@ -45,6 +45,7 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         let backButton = UIBarButtonItem(title: "Kembali", style: UIBarButtonItemStyle.plain, target: self, action: nil)
         navigationItem.backBarButtonItem = backButton
 
+    
         // For making collection view device independent
         var screenSize: CGRect!
         var screenWidth: CGFloat!
