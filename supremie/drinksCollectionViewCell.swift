@@ -25,6 +25,7 @@ class drinksCollectionViewCell: UICollectionViewCell {
             
             drinksName.text =  (objDrinks?.brand)!+" "+(objDrinks?.flavour)!
             drinksQunatity.text = String(describing: objDrinks!.count)
+            manageBackGroundColor()
         }
     }
     
@@ -61,6 +62,7 @@ class drinksCollectionViewCell: UICollectionViewCell {
     public func updateStatus(count: Int) {
         objDrinks?.count = count
         drinksQunatity.text = "\(count)"
+        manageBackGroundColor()
     }
     
     private func callComplition() {
@@ -68,5 +70,16 @@ class drinksCollectionViewCell: UICollectionViewCell {
             return
         }
         clickComplition!((objDrinks?.count)!, tag)
+        
+    }
+    
+    private func manageBackGroundColor() {
+        let count:Int = Int(drinksQunatity.text!)!
+        
+        if count > 0 {
+            makeHilighted()
+        } else {
+            makeNormal()
+        }
     }
 }

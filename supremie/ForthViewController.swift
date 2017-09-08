@@ -28,9 +28,9 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
         // For Button and title in navigation bar
         self.title = "Pilih Topping"
-   
-        let backButton = UIBarButtonItem(title: "Kembali", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-        navigationItem.backBarButtonItem = backButton
+   navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
+        navigationItem.leftBarButtonItem = backButton
         
         // For making collection view device independent
         var screenSize: CGRect!
@@ -50,9 +50,16 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         toppingsCollectionView.collectionViewLayout = layout
         
     }
+
     
     func onClcikBack() {
+        SelectedModel.sharedInstant.selectedToppings = [Topping]()
+        InfoDetail.sharedInstant.objItem.toppings = InfoDetail.sharedInstant.objItem.toppings.map({ (object) -> Topping in
+            object.count = 0
+            return object
+        })
         _ = self.navigationController?.popViewController(animated: true)
+        
     }
         
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
@@ -78,7 +85,7 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let cell = collectionView.cellForItem(at: indexPath) as? noodleCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as? toppingsCollectionViewCell
         cell?.increnmentValue()
     }
     

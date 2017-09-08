@@ -23,6 +23,7 @@ class noodleCollectionViewCell: UICollectionViewCell {
                 noodlePicture.image = UIImage(named: "Default")
             }
             noodleQunatity.text = String(describing: objCompany!.count)
+            manageBackGroundColor()
         }
     }
     
@@ -61,6 +62,7 @@ class noodleCollectionViewCell: UICollectionViewCell {
     public func updateStatus(count: Int) {
         objCompany?.count = count
         noodleQunatity.text = "\(count)"
+        manageBackGroundColor()
     }
     
     private func callComplition() {
@@ -68,5 +70,16 @@ class noodleCollectionViewCell: UICollectionViewCell {
             return
         }
         clickComplition!((objCompany?.count)!, tag)
+        
+    }
+    
+    private func manageBackGroundColor() {
+        let count:Int = Int(noodleQunatity.text!)!
+        
+        if count > 0 {
+            makeHilighted()
+        } else {
+            makeNormal()
+        }
     }
 }

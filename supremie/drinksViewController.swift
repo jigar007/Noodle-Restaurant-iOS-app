@@ -20,9 +20,9 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         // For Button and title in navigation bar
         self.title = "Pilih Minuman & ES"
-        
-        let backButton = UIBarButtonItem(title: "Kembali", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-        navigationItem.backBarButtonItem = backButton
+        navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
+        navigationItem.leftBarButtonItem = backButton
 
         // For making collection view device independent
         var screenSize: CGRect!
@@ -44,6 +44,11 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
     }
     
     func onClcikBack() {
+        InfoDetail.sharedInstant.objItem.drinks = InfoDetail.sharedInstant.objItem.drinks.map({ (object) -> Drink in
+            object.count = 0
+            return object
+        })
+        SelectedModel.sharedInstant.selectedDrinks = [Drink]()
         _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -68,6 +73,13 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath) as? drinksCollectionViewCell
+        cell?.increnmentValue()
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "drinksToBills" {
