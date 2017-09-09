@@ -102,8 +102,6 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         return cell
     }
     
-  
-    
     private func resetCountVariable() {
         flavourList = flavourList.map { (drink:Drink) -> Drink in
             drink.count = 0

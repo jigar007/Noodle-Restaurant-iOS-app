@@ -34,6 +34,7 @@ class SelectedModel {
     var dining_method:String = ""
     
     var chilliLevel = 0
+    var chilliPrice = 0
     
 }
 

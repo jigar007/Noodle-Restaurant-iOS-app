@@ -18,6 +18,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     
     @IBOutlet weak var chililevel: UILabel!
     
+    @IBOutlet weak var chilliPrice: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var totalSum: UILabel!
     @IBAction func cash(_ sender: Any) {
@@ -72,7 +73,8 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         self.totalSum.text = currencyFormat(currency:sum)
         self.fianlTotalPrice.text = currencyFormat(currency:finalTotalPrice)
         
-        self.chililevel.text = "Pilih Level Pedas Level " + String(SelectedModel.sharedInstant.chilliLevel)
+        self.chililevel.text = "Level Pedas " + String(SelectedModel.sharedInstant.chilliLevel)
+        self.chilliPrice.text = currencyFormat(currency:SelectedModel.sharedInstant.chilliPrice)
         
         // For Button and title in navigation bar
         self.title = "Review Pesanan"
