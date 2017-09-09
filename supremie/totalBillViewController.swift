@@ -13,9 +13,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     var finalTotalPrice: Int = 0
     static var orderNumber:Int = 0
     var tableData:[SuperOfAll] = [SuperOfAll]()
-    
-
-    
+    let formatter = NumberFormatter()
     @IBOutlet weak var chililevel: UILabel!
     
     @IBOutlet weak var chilliPrice: UILabel!
@@ -36,19 +34,32 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         let obj:SuperOfAll = SuperOfAll()
-        obj.name = (SelectedModel.sharedInstant.selectedMie?.flavour)!
+        formatter.numberStyle = NumberFormatter.Style.decimal
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale(identifier: "DE")
         
-        obj.qty = (SelectedModel.sharedInstant.selectedMie?.count)!
+        let tempItem = InfoDetail.sharedInstant.objItem.mie.filter({ (drink) -> Bool in
+            if drink.count > 0 {
+                return true
+            }
+            return false
+        }).first
         
-        obj.price = (SelectedModel.sharedInstant.selectedMie?.price)!
+        let obj:SuperOfAll = SuperOfAll()
+//        obj.name = (SelectedModel.sharedInstant.selectedMie?.flavour)!
+        obj.name = (tempItem?.flavour!)!
+        
+//        obj.qty = (SelectedModel.sharedInstant.selectedMie?.count)!
+        obj.qty = (tempItem?.count)!
+        
+        obj.price = Int((tempItem?.price!)!) * Int((tempItem?.count)!)
         
         tableData.append(obj)
         
         for topping in SelectedModel.sharedInstant.selectedToppings {
             let obj:SuperOfAll = SuperOfAll()
             obj.name=topping.name
-            obj.price=topping.price
+            obj.price = topping.price * topping.count
             obj.qty=topping.count
             tableData.append(obj)
             
@@ -56,7 +67,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         for drink in SelectedModel.sharedInstant.selectedDrinks {
             let obj:SuperOfAll = SuperOfAll()
             obj.name = drink.brand+" "+drink.flavour
-            obj.price=drink.price
+            obj.price=drink.price * drink.count
             obj.qty=drink.count
             tableData.append(obj)
         }
@@ -148,14 +159,21 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     
     func calculateTotalPrice() -> Int {
         
-        var totalAmount:Int = (SelectedModel.sharedInstant.selectedMie?.price)!
+        let tempItem = InfoDetail.sharedInstant.objItem.mie.filter({ (drink) -> Bool in
+            if drink.count > 0 {
+                return true
+            }
+            return false
+        }).first
+        
+        var totalAmount:Int = Int((tempItem?.price!)!) * Int((tempItem?.count)!)
         
         for drinks in  SelectedModel.sharedInstant.selectedDrinks {
             totalAmount = totalAmount + (drinks.price * drinks.count)
         }
         
         for toppings in SelectedModel.sharedInstant.selectedToppings {
-            totalAmount = totalAmount + (toppings.price * toppings.price)
+            totalAmount = totalAmount + (toppings.price * toppings.count)
         }
         return totalAmount
     }

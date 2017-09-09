@@ -36,8 +36,6 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(InfoDetail.sharedInstant.objItem.mie.count)
-        
         // For Button and title in navigation bar
         navigationItem.hidesBackButton = true
         self.title = "Pilih Rasa"
