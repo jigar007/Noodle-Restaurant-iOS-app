@@ -40,7 +40,7 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8
         drinksCiewController.collectionViewLayout = layout
-        
+        drinksButton.isUserInteractionEnabled = false
     }
     
     func onClcikBack() {
@@ -69,7 +69,7 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
             }else{
                 self.drinksButton.backgroundColor = UIColor(red: 227/255, green: 41/255, blue: 48/255, alpha: 1.0)
             }
-            
+            self.enableDisableNextButton()
         }
         return cell
     }
@@ -89,4 +89,17 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         }
     }
 
+    func enableDisableNextButton()  {
+        let tempList = drinksList?.filter { (drink) -> Bool in
+            return drink.count > 0
+        }
+        
+        guard (tempList?.count)! > 0 else {
+            drinksButton.isUserInteractionEnabled = false
+            drinksButton.backgroundColor = UIColor.gray
+            return
+        }
+        drinksButton.backgroundColor = UIColor.red
+        drinksButton.isUserInteractionEnabled = true
+    }
 }
