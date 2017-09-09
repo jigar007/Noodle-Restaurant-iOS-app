@@ -9,6 +9,8 @@
 import UIKit
 
 class drinksCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var imageStock: UIImageView!
     @IBOutlet weak var drinksPicture: UIImageView!
     @IBOutlet weak var drinksName: UILabel!
     @IBOutlet weak var drinksQunatity: UILabel!
@@ -27,6 +29,7 @@ class drinksCollectionViewCell: UICollectionViewCell {
             drinksName.text =  (objDrinks?.brand)!+" "+(objDrinks?.flavour)!
             drinksQunatity.text = String(describing: objDrinks!.count)
             manageBackGroundColor()
+            manageStock()
         }
     }
     
@@ -81,6 +84,16 @@ class drinksCollectionViewCell: UICollectionViewCell {
             makeHilighted()
         } else {
             makeNormal()
+        }
+    }
+    
+    private func manageStock() {
+        if (objDrinks?.stock)! > 0 {
+            imageStock.isHidden = true
+            self.isUserInteractionEnabled = true
+        } else {
+            imageStock.isHidden = false
+            self.isUserInteractionEnabled = false
         }
     }
 }

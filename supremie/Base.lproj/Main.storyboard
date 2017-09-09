@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fRl-Sa-MhV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fRl-Sa-MhV">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -246,7 +246,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8g0-pD-aIp">
-                                                            <rect key="frame" x="-20" y="0.0" width="326" height="321"/>
+                                                            <rect key="frame" x="0.0" y="10" width="286" height="266"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MDT-Y9-5wy">
                                                                     <rect key="frame" x="0.0" y="0.0" width="286" height="156"/>
@@ -319,16 +319,26 @@
                                                                 <constraint firstItem="FBJ-gn-zLa" firstAttribute="top" secondItem="MDT-Y9-5wy" secondAttribute="bottom" constant="10" id="z6r-fB-1mO"/>
                                                             </constraints>
                                                         </stackView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancelStock" translatesAutoresizingMaskIntoConstraints="NO" id="d4K-Ut-iq1">
+                                                            <rect key="frame" x="68" y="68" width="150" height="150"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="150" id="JvR-bu-X8Q"/>
+                                                                <constraint firstAttribute="width" constant="150" id="Q9R-eW-d5d"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                 </view>
                                                 <color key="backgroundColor" red="0.99019607840000001" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="8g0-pD-aIp" firstAttribute="top" secondItem="C6J-bL-DI8" secondAttribute="top" constant="10" id="J41-3f-S4M"/>
+                                                    <constraint firstItem="d4K-Ut-iq1" firstAttribute="centerY" secondItem="C6J-bL-DI8" secondAttribute="centerY" id="Jq4-ZO-A2R"/>
                                                     <constraint firstItem="8g0-pD-aIp" firstAttribute="leading" secondItem="C6J-bL-DI8" secondAttribute="leading" id="OWz-3s-1Lv"/>
                                                     <constraint firstAttribute="trailing" secondItem="8g0-pD-aIp" secondAttribute="trailing" id="aPW-UB-Cy5"/>
+                                                    <constraint firstItem="d4K-Ut-iq1" firstAttribute="centerX" secondItem="C6J-bL-DI8" secondAttribute="centerX" id="o3p-c2-S6D"/>
                                                     <constraint firstAttribute="bottom" secondItem="8g0-pD-aIp" secondAttribute="bottom" constant="10" id="yc1-Jj-mty"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="imageStock" destination="d4K-Ut-iq1" id="smB-Oo-u8S"/>
                                                     <outlet property="noodleName" destination="FBJ-gn-zLa" id="dbO-Wt-elh"/>
                                                     <outlet property="noodlePicture" destination="MDT-Y9-5wy" id="Oux-pi-VgO"/>
                                                     <outlet property="noodleQunatity" destination="W94-q7-0U8" id="426-mz-G56"/>
@@ -413,7 +423,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ReP-Xv-vU8">
-                                                            <rect key="frame" x="-369" y="-500" width="1024" height="1286"/>
+                                                            <rect key="frame" x="0.0" y="10" width="286" height="266"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q0s-fQ-97z">
                                                                     <rect key="frame" x="0.0" y="0.0" width="286" height="125"/>
@@ -497,16 +507,26 @@
                                                                 <constraint firstItem="g4B-f0-ZiT" firstAttribute="leading" secondItem="ReP-Xv-vU8" secondAttribute="leading" id="lfM-gi-dMh"/>
                                                             </constraints>
                                                         </stackView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancelStock" translatesAutoresizingMaskIntoConstraints="NO" id="QCy-nc-vGT">
+                                                            <rect key="frame" x="68" y="68" width="150" height="150"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="150" id="EEz-WY-nIw"/>
+                                                                <constraint firstAttribute="width" constant="150" id="ko5-7v-r5O"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                 </view>
                                                 <color key="backgroundColor" red="0.99019607840000001" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="ReP-Xv-vU8" firstAttribute="leading" secondItem="iki-qu-vfD" secondAttribute="leading" id="PKl-i7-66s"/>
+                                                    <constraint firstItem="QCy-nc-vGT" firstAttribute="centerX" secondItem="iki-qu-vfD" secondAttribute="centerX" id="YGC-aa-Hb2"/>
                                                     <constraint firstAttribute="bottom" secondItem="ReP-Xv-vU8" secondAttribute="bottom" constant="10" id="bBp-n6-Yni"/>
                                                     <constraint firstItem="ReP-Xv-vU8" firstAttribute="top" secondItem="iki-qu-vfD" secondAttribute="top" constant="10" id="btA-xh-3Ez"/>
                                                     <constraint firstAttribute="trailing" secondItem="ReP-Xv-vU8" secondAttribute="trailing" id="tal-7q-4IN"/>
+                                                    <constraint firstItem="QCy-nc-vGT" firstAttribute="centerY" secondItem="iki-qu-vfD" secondAttribute="centerY" id="ysi-MD-A9f"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="imageStock" destination="QCy-nc-vGT" id="jcR-fV-FRS"/>
                                                     <outlet property="toppingPrice" destination="sKG-5v-VIz" id="O5G-cq-YLo"/>
                                                     <outlet property="toppingsName" destination="g4B-f0-ZiT" id="Eyd-yj-O3Y"/>
                                                     <outlet property="toppingsPicture" destination="Q0s-fQ-97z" id="zrB-gr-yts"/>
@@ -710,7 +730,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5Vs-Dw-sf9">
-                                                            <rect key="frame" x="-369" y="-500" width="1024" height="1286"/>
+                                                            <rect key="frame" x="0.0" y="10" width="286" height="266"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f3D-ui-lfr">
                                                                     <rect key="frame" x="0.0" y="0.0" width="286" height="130"/>
@@ -794,12 +814,21 @@
                                                                 <constraint firstItem="9wg-rO-Zds" firstAttribute="leading" secondItem="5Vs-Dw-sf9" secondAttribute="leading" id="gRE-Oc-Iph"/>
                                                             </constraints>
                                                         </stackView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancelStock" translatesAutoresizingMaskIntoConstraints="NO" id="6dZ-72-foB">
+                                                            <rect key="frame" x="68" y="68" width="150" height="150"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="150" id="2XI-jR-9rG"/>
+                                                                <constraint firstAttribute="width" constant="150" id="TsD-SK-YEM"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                 </view>
                                                 <color key="backgroundColor" red="0.99019607840000001" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="5Vs-Dw-sf9" firstAttribute="top" secondItem="tmt-UB-nC2" secondAttribute="top" constant="10" id="1HC-C7-eIK"/>
+                                                    <constraint firstItem="6dZ-72-foB" firstAttribute="centerX" secondItem="tmt-UB-nC2" secondAttribute="centerX" id="GYD-SF-p9v"/>
                                                     <constraint firstAttribute="bottom" secondItem="5Vs-Dw-sf9" secondAttribute="bottom" constant="10" id="VWo-bE-hm1"/>
+                                                    <constraint firstItem="6dZ-72-foB" firstAttribute="centerY" secondItem="tmt-UB-nC2" secondAttribute="centerY" id="dZa-n8-Vbu"/>
                                                     <constraint firstItem="5Vs-Dw-sf9" firstAttribute="leading" secondItem="tmt-UB-nC2" secondAttribute="leading" id="sqN-6A-oX8"/>
                                                     <constraint firstAttribute="trailing" secondItem="5Vs-Dw-sf9" secondAttribute="trailing" id="vD7-yf-ULm"/>
                                                 </constraints>
@@ -808,6 +837,7 @@
                                                     <outlet property="drinksPicture" destination="f3D-ui-lfr" id="G1v-7Z-4b4"/>
                                                     <outlet property="drinksPrice" destination="9wg-rO-Zds" id="SF0-0v-CUq"/>
                                                     <outlet property="drinksQunatity" destination="lTB-WZ-sGv" id="g7m-CQ-2J7"/>
+                                                    <outlet property="imageStock" destination="6dZ-72-foB" id="WOK-cy-cxj"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -1216,6 +1246,7 @@ KASIH</string>
     </scenes>
     <resources>
         <image name="Mangkok" width="675" height="67"/>
+        <image name="cancelStock" width="30" height="30"/>
         <image name="eathere" width="32" height="61"/>
         <image name="supremieLogo" width="454" height="148"/>
         <image name="takeaway" width="61" height="60"/>
