@@ -22,7 +22,15 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
     @IBOutlet weak var noodleButton: UIButton!
     
     @IBAction func noodelAction(_ sender: Any) {
+        let tempList = flavourList.filter { (flavour) -> Bool in
+            return flavour.count > 0
+        }
         
+        guard tempList.count > 0 else {
+            return
+        }
+        
+        performSegue(withIdentifier: "thirdToForth", sender: nil)
     }
     
     override func viewDidLoad() {
@@ -125,9 +133,10 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
         guard tempList.count > 0 else {
             noodleButton.isEnabled = false
+            noodleButton.backgroundColor = UIColor.gray
             return
         }
-        
+        noodleButton.backgroundColor = UIColor.red
         noodleButton.isEnabled = true
     }
 }
