@@ -10,17 +10,17 @@ import UIKit
 
 class ForthViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var toppingsButton: UIButton!
- 
+    
     var toppingList = InfoDetail.sharedInstant.objItem.toppings.filter { (topping) -> Bool in
         return topping.stock >= 3
     }
- 
+    
     @IBOutlet weak var toppingsCollectionView: UICollectionView!
     
     @IBAction func toppingSelect(_ sender: Any) {
-       SelectedModel.sharedInstant.selectedToppings = toppingList.filter({ (topping) -> Bool in
+        SelectedModel.sharedInstant.selectedToppings = toppingList.filter({ (topping) -> Bool in
             return topping.count > 0
-       })
+        })
     }
     
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
         // For Button and title in navigation bar
         self.title = "Pilih Topping"
-   navigationItem.hidesBackButton = true
+        navigationItem.hidesBackButton = true
         let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
         navigationItem.leftBarButtonItem = backButton
         
@@ -48,9 +48,9 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8
         toppingsCollectionView.collectionViewLayout = layout
-        
+        toppingsButton.isUserInteractionEnabled = false
     }
-
+    
     
     func onClcikBack() {
         SelectedModel.sharedInstant.selectedToppings = [Topping]()
@@ -61,14 +61,14 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         _ = self.navigationController?.popViewController(animated: true)
         
     }
-        
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return toppingList.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"toppingsCell", for: indexPath) as! toppingsCollectionViewCell        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"toppingsCell", for: indexPath) as! toppingsCollectionViewCell
         
         cell.objTopping = toppingList[indexPath.row]
         cell.tag = indexPath.row
@@ -94,7 +94,9 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
             return topping.count > 0
         }
         guard tempList.count > 0 else {
+            toppingsButton.isUserInteractionEnabled = false
             return
         }
+        toppingsButton.isUserInteractionEnabled = true
     }
 }

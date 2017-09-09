@@ -334,8 +334,6 @@
                                         </state>
                                         <connections>
                                             <action selector="noodelAction:" destination="lPt-QE-Gxy" eventType="touchUpInside" id="1U7-qW-PBc"/>
-                                            <action selector="noodleRed:" destination="lPt-QE-Gxy" eventType="touchDown" id="Q4K-R0-fFl"/>
-                                            <segue destination="gIG-yJ-505" kind="show" identifier="thirdToForth" id="hu8-Ua-HBd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -357,6 +355,7 @@
                     <connections>
                         <outlet property="noodleButton" destination="nlq-OG-uzQ" id="gWr-Jd-ESE"/>
                         <outlet property="noodleCollectionView" destination="kyo-te-eWc" id="HBr-jr-PRn"/>
+                        <segue destination="gIG-yJ-505" kind="show" identifier="thirdToForth" id="hsP-QN-6gr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gUX-DN-Xnr" userLabel="First Responder" sceneMemberID="firstResponder"/>
