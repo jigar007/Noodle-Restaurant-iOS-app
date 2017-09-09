@@ -22,6 +22,10 @@ class InfoDetail {
     static var order_id: Int = 0
     static var response:Int = 0
     static var responseDict = [String:Any]()
+    
+    private init() {
+        
+    }
 }
 
 class SelectedModel {
@@ -34,7 +38,6 @@ class SelectedModel {
     var dining_method:String = ""
     
     var chilliLevel = 0
-    
 }
 
 class SuperOfAll{
