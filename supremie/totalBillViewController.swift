@@ -46,12 +46,9 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         }).first
         
         let obj:SuperOfAll = SuperOfAll()
-//        obj.name = (SelectedModel.sharedInstant.selectedMie?.flavour)!
+        
         obj.name = (tempItem?.flavour!)!
-        
-//        obj.qty = (SelectedModel.sharedInstant.selectedMie?.count)!
         obj.qty = (tempItem?.count)!
-        
         obj.price = Int((tempItem?.price!)!) * Int((tempItem?.count)!)
         
         tableData.append(obj)
@@ -76,7 +73,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         {
             sum = sum + each.price
         }
-        
+        sum = sum + SelectedModel.sharedInstant.chilliPrice
         let Tax:Int = (sum * 15)/100
         
         finalTotalPrice = Tax + sum
@@ -166,7 +163,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
             return false
         }).first
         
-        var totalAmount:Int = Int((tempItem?.price!)!) * Int((tempItem?.count)!)
+        var totalAmount:Int = Int((tempItem?.price!)!) * Int((tempItem?.count)!) + SelectedModel.sharedInstant.chilliPrice
         
         for drinks in  SelectedModel.sharedInstant.selectedDrinks {
             totalAmount = totalAmount + (drinks.price * drinks.count)
@@ -175,9 +172,11 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         for toppings in SelectedModel.sharedInstant.selectedToppings {
             totalAmount = totalAmount + (toppings.price * toppings.count)
         }
-        return totalAmount
+        let withTax:Int = (totalAmount * 15)/100
+        
+        return withTax + totalAmount
     }
-    
+
     func requestToPay(params:[String:Any]) {
         
         var request = URLRequest(url: URL(string: "http://139.59.96.68:8000/orders/")!)

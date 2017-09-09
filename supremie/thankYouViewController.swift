@@ -17,6 +17,7 @@ class thankYouViewController: UIViewController {
         super.viewDidLoad()
         sleep(1)
         orderID.text = "Order ID:"+String(totalBillViewController.orderNumber)
+        createTimer()
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
