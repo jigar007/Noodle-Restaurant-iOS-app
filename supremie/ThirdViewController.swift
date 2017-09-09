@@ -22,28 +22,25 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
     @IBOutlet weak var noodleButton: UIButton!
     
     @IBAction func noodelAction(_ sender: Any) {
+        let tempList = flavourList.filter { (flavour) -> Bool in
+            return flavour.count > 0
+        }
         
+        guard tempList.count > 0 else {
+            return
+        }
+        
+        performSegue(withIdentifier: "thirdToForth", sender: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(InfoDetail.sharedInstant.objItem.mie.count)
-        
-        //        for item in InfoDetail.sharedInstant.objItem.mie
-        //        {
-        //            if item.stock>3 && item.brand ==  InfoDetail.selectedName {
-        //                noodleList.append(item.flavour)
-        //                noodleIdList.append(item.id)
-        //            }
-        //        }
-        
-        
-        
         // For Button and title in navigation bar
+        navigationItem.hidesBackButton = true
         self.title = "Pilih Rasa"
-        let backButton = UIBarButtonItem(title: "Kembali", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-        navigationItem.backBarButtonItem = backButton
+        let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
+        navigationItem.leftBarButtonItem = backButton
 
     
         // For making collection view device independent
@@ -65,7 +62,16 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     func onClcikBack() {
+        SelectedModel.sharedInstant.selectedMie = nil
+        InfoDetail.sharedInstant.objItem.mie = InfoDetail.sharedInstant.objItem.mie.map { (object) -> Drink in
+            object.count = 0
+            return object
+        }
         _ = self.navigationController?.popViewController(animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -92,12 +98,7 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
             cell.updateStatus(count: count)
             
             cell.backgroundColor = UIColor.white
-            
-            if (count == 0){
-                self.noodleButton.backgroundColor = UIColor(red: 146/255, green: 148/255, blue: 151/255, alpha: 1.0)
-            }else{
-                self.noodleButton.backgroundColor = UIColor(red: 227/255, green: 41/255, blue: 48/255, alpha: 1.0)
-            }
+                       
         }
         
         return cell
@@ -126,9 +127,10 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
         guard tempList.count > 0 else {
             noodleButton.isEnabled = false
+            noodleButton.backgroundColor = UIColor.gray
             return
         }
-        
+        noodleButton.backgroundColor = UIColor.red
         noodleButton.isEnabled = true
     }
 }

@@ -9,16 +9,16 @@
 import UIKit
 
 class totalBillViewController: UIViewController, UITableViewDataSource,UITableViewDelegate
- {
+{
     var finalTotalPrice: Int = 0
     static var orderNumber:Int = 0
     var tableData:[SuperOfAll] = [SuperOfAll]()
     
     // Currency formatter
     let formatter = NumberFormatter()
- 
+    
     @IBOutlet weak var chililevel: UILabel!
-
+    
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var totalSum: UILabel!
     @IBAction func cash(_ sender: Any) {
@@ -39,16 +39,25 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         formatter.numberStyle = NumberFormatter.Style.decimal
         formatter.numberStyle = .decimal
         formatter.locale = Locale(identifier: "DE")
-
-        let obj:SuperOfAll = SuperOfAll()
-        obj.name = (SelectedModel.sharedInstant.selectedMie?.flavour)!
         
-        obj.qty = (SelectedModel.sharedInstant.selectedMie?.count)!
-
-        obj.price = (SelectedModel.sharedInstant.selectedMie?.price)!
+        let tempItem = InfoDetail.sharedInstant.objItem.mie.filter({ (drink) -> Bool in
+            if drink.count > 0 {
+                return true
+            }
+            return false
+        }).first
+        
+        let obj:SuperOfAll = SuperOfAll()
+//        obj.name = (SelectedModel.sharedInstant.selectedMie?.flavour)!
+        obj.name = (tempItem?.flavour!)!
+        
+//        obj.qty = (SelectedModel.sharedInstant.selectedMie?.count)!
+        obj.qty = (tempItem?.count)!
+        
+        obj.price = Int((tempItem?.price!)!) * Int((tempItem?.count)!)
         
         tableData.append(obj)
-
+        
         for topping in SelectedModel.sharedInstant.selectedToppings {
             let obj:SuperOfAll = SuperOfAll()
             obj.name=topping.name
@@ -76,14 +85,14 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         self.tax.text = "RP "+String(describing: formatter.string(from: Tax as NSNumber)!)
         self.totalSum.text = "RP "+String(describing: formatter.string(from: sum as NSNumber)!)
         self.fianlTotalPrice.text = "RP "+String(describing: formatter.string(from: finalTotalPrice as NSNumber)!)
-
+        
         self.chililevel.text = "Pilih Level Pedas Level " + String(SelectedModel.sharedInstant.chilliLevel)
         
         // For Button and title in navigation bar
         self.title = "Review Pesanan"
-        
-        let backButton = UIBarButtonItem(title: "Kembali", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-        navigationItem.backBarButtonItem = backButton
+        navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
+        navigationItem.leftBarButtonItem = backButton
         
     }
     func onClcikBack() {
@@ -94,7 +103,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         return tableData.count
         
     }
-
+    
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
@@ -103,12 +112,12 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         cell.iteamName.text = tableData[indexPath.row].name
         cell.Qty.text = "Qty "+String(tableData[indexPath.row].qty)
         cell.price.text = "RP "+String(describing: formatter.string(from: tableData[indexPath.row].price as NSNumber)!)
-
+        
         return cell
-
+        
     }
-
-  
+    
+    
     func createRequestrDict(paymentType:String)  {
         
         var requestDict = [String : Any]()
@@ -152,14 +161,21 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     
     func calculateTotalPrice() -> Int {
         
-        var totalAmount:Int = (SelectedModel.sharedInstant.selectedMie?.price)!
+        let tempItem = InfoDetail.sharedInstant.objItem.mie.filter({ (drink) -> Bool in
+            if drink.count > 0 {
+                return true
+            }
+            return false
+        }).first
+        
+        var totalAmount:Int = Int((tempItem?.price!)!) * Int((tempItem?.count)!)
         
         for drinks in  SelectedModel.sharedInstant.selectedDrinks {
-            totalAmount = totalAmount + drinks.price
+            totalAmount = totalAmount + (drinks.price * drinks.count)
         }
         
         for toppings in SelectedModel.sharedInstant.selectedToppings {
-            totalAmount = totalAmount + toppings.price
+            totalAmount = totalAmount + (toppings.price * toppings.count)
         }
         return totalAmount
     }
@@ -177,7 +193,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
             request.setValue("application/json;application/html; charset=utf-8", forHTTPHeaderField: "Content-Type")
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
-              
+                
                 guard let data = data, error == nil else {
                     print("error=\(String(describing: error))")
                     return
@@ -185,16 +201,16 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
                 
                 if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {                               print("statusCode should be 200, but is \(httpStatus.statusCode)")
                     print("response = \(String(describing: response))")
-                }
-                
-                do{
-                let json = try JSONSerialization.jsonObject(with: data)as? [String:Any]
-                totalBillViewController.orderNumber = (json?["id"] as? Int)!
-                    print(totalBillViewController.orderNumber )
-                }catch{
-                }
-                let responseString = String(data: data, encoding: .utf8)
-                print("responseString = \(String(describing: responseString))")
+                } else {
+                    do{
+                        let json = try JSONSerialization.jsonObject(with: data)as? [String:Any]
+                        totalBillViewController.orderNumber = (json?["id"] as? Int)!
+                        print(totalBillViewController.orderNumber )
+                    }catch{
+                    }
+                    let responseString = String(data: data, encoding: .utf8)
+                    print("responseString = \(String(describing: responseString))")
+                }                
             }
             task.resume()
             

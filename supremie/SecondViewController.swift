@@ -30,8 +30,9 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
         self.navigationController?.navigationBar.barTintColor = UIColor.red
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 100.0)
         
-        let backButton = UIBarButtonItem(title: "Kembali", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-        navigationItem.backBarButtonItem = backButton
+        navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
+        navigationItem.leftBarButtonItem = backButton
         
         // For making collection view device independent
         var screenSize: CGRect!
@@ -53,6 +54,7 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
     }
     
     func onClcikBack() {
+        SelectedModel.sharedInstant.selectedMie = nil
         _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -66,13 +68,6 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"companyLogoCell", for: indexPath) as! CompanyCollectionViewCell
         
         cell.objDrink.image =   UIImage(named: arrayCompanyList[indexPath.row].brand)
-        
-//        if ((UIImage(named: (arrayCompanyList[indexPath.row].brand?.imgUrl)!)) != nil){
-//            cell.objDrink.image = UIImage(named: (objCompany?.imgUrl)!)
-//        }else{
-//            cell.objDrink.image = UIImage(named: "Default")
-//        }
-
         
         return cell
     }

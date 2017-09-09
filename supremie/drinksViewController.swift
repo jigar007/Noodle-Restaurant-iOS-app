@@ -20,9 +20,9 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         // For Button and title in navigation bar
         self.title = "Pilih Minuman & ES"
-        
-        let backButton = UIBarButtonItem(title: "Kembali", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-        navigationItem.backBarButtonItem = backButton
+        navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
+        navigationItem.leftBarButtonItem = backButton
 
         // For making collection view device independent
         var screenSize: CGRect!
@@ -40,10 +40,15 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8
         drinksCiewController.collectionViewLayout = layout
-        
+        drinksButton.isUserInteractionEnabled = false
     }
     
     func onClcikBack() {
+        InfoDetail.sharedInstant.objItem.drinks = InfoDetail.sharedInstant.objItem.drinks.map({ (object) -> Drink in
+            object.count = 0
+            return object
+        })
+        SelectedModel.sharedInstant.selectedDrinks = [Drink]()
         _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -64,10 +69,17 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
             }else{
                 self.drinksButton.backgroundColor = UIColor(red: 227/255, green: 41/255, blue: 48/255, alpha: 1.0)
             }
-            
+            self.enableDisableNextButton()
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath) as? drinksCollectionViewCell
+        cell?.increnmentValue()
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "drinksToBills" {
@@ -77,4 +89,17 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         }
     }
 
+    func enableDisableNextButton()  {
+        let tempList = drinksList?.filter { (drink) -> Bool in
+            return drink.count > 0
+        }
+        
+        guard (tempList?.count)! > 0 else {
+            drinksButton.isUserInteractionEnabled = false
+            drinksButton.backgroundColor = UIColor.gray
+            return
+        }
+        drinksButton.backgroundColor = UIColor.red
+        drinksButton.isUserInteractionEnabled = true
+    }
 }
