@@ -13,9 +13,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     var finalTotalPrice: Int = 0
     static var orderNumber:Int = 0
     var tableData:[SuperOfAll] = [SuperOfAll]()
-    
-
-    
+    let formatter = NumberFormatter()
     @IBOutlet weak var chililevel: UILabel!
     
     @IBOutlet weak var chilliPrice: UILabel!
@@ -61,7 +59,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         for topping in SelectedModel.sharedInstant.selectedToppings {
             let obj:SuperOfAll = SuperOfAll()
             obj.name=topping.name
-            obj.price=topping.price
+            obj.price = topping.price * topping.count
             obj.qty=topping.count
             tableData.append(obj)
             
@@ -69,7 +67,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         for drink in SelectedModel.sharedInstant.selectedDrinks {
             let obj:SuperOfAll = SuperOfAll()
             obj.name = drink.brand+" "+drink.flavour
-            obj.price=drink.price
+            obj.price=drink.price * drink.count
             obj.qty=drink.count
             tableData.append(obj)
         }
