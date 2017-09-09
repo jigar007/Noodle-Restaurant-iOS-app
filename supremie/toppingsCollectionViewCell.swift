@@ -10,6 +10,7 @@ import UIKit
 
 class toppingsCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var imageStock: UIImageView!
     @IBOutlet weak var toppingsPicture: UIImageView!
     @IBOutlet weak var toppingsName: UILabel!
     @IBOutlet weak var toppingsQuantity: UILabel!
@@ -28,6 +29,7 @@ class toppingsCollectionViewCell: UICollectionViewCell {
             toppingsName.text =  objTopping!.name
             toppingsQuantity.text = String(describing: objTopping!.count)
             manageBackGroundColor()
+            manageStock()
         }
     }
     
@@ -84,6 +86,16 @@ class toppingsCollectionViewCell: UICollectionViewCell {
             makeHilighted()
         } else {
             makeNormal()
+        }
+    }
+    
+    private func manageStock() {
+        if (objTopping?.stock)! > 0 {
+            imageStock.isHidden = true
+            self.isUserInteractionEnabled = true
+        } else {
+            imageStock.isHidden = false
+            self.isUserInteractionEnabled = false
         }
     }
 }
