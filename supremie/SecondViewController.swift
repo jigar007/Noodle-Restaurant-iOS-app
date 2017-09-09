@@ -67,6 +67,8 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"companyLogoCell", for: indexPath) as! CompanyCollectionViewCell
         
+        cell.noodlePrice.text = currencyFormat(currency:arrayCompanyList[indexPath.row].price)
+        
         cell.objDrink.image =   UIImage(named: arrayCompanyList[indexPath.row].brand)
         
         return cell

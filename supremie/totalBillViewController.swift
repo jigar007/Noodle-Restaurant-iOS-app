@@ -14,11 +14,11 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     static var orderNumber:Int = 0
     var tableData:[SuperOfAll] = [SuperOfAll]()
     
-    // Currency formatter
-    let formatter = NumberFormatter()
+
     
     @IBOutlet weak var chililevel: UILabel!
     
+    @IBOutlet weak var chilliPrice: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var totalSum: UILabel!
     @IBAction func cash(_ sender: Any) {
@@ -82,11 +82,12 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         let Tax:Int = (sum * 15)/100
         
         finalTotalPrice = Tax + sum
-        self.tax.text = "RP "+String(describing: formatter.string(from: Tax as NSNumber)!)
-        self.totalSum.text = "RP "+String(describing: formatter.string(from: sum as NSNumber)!)
-        self.fianlTotalPrice.text = "RP "+String(describing: formatter.string(from: finalTotalPrice as NSNumber)!)
+        self.tax.text = currencyFormat(currency:Tax)
+        self.totalSum.text = currencyFormat(currency:sum)
+        self.fianlTotalPrice.text = currencyFormat(currency:finalTotalPrice)
         
-        self.chililevel.text = "Pilih Level Pedas Level " + String(SelectedModel.sharedInstant.chilliLevel)
+        self.chililevel.text = "Level Pedas " + String(SelectedModel.sharedInstant.chilliLevel)
+        self.chilliPrice.text = currencyFormat(currency:SelectedModel.sharedInstant.chilliPrice)
         
         // For Button and title in navigation bar
         self.title = "Review Pesanan"
@@ -111,8 +112,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         
         cell.iteamName.text = tableData[indexPath.row].name
         cell.Qty.text = "Qty "+String(tableData[indexPath.row].qty)
-        cell.price.text = "RP "+String(describing: formatter.string(from: tableData[indexPath.row].price as NSNumber)!)
-        
+        cell.price.text = currencyFormat(currency: tableData[indexPath.row].price)
         return cell
         
     }
