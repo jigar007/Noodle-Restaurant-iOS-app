@@ -10,4 +10,5 @@ import UIKit
 
 class chilliCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var chilliPicture: UIImageView!
+    @IBOutlet weak var chiliLabel: UILabel!
 }

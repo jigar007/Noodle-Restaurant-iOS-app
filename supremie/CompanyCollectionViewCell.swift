@@ -11,4 +11,5 @@ import UIKit
 class CompanyCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var objDrink: UIImageView!
+    @IBOutlet weak var noodlePrice: UILabel!
 }

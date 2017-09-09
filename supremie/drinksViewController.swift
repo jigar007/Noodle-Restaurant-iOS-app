@@ -61,6 +61,7 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"drinksCell", for: indexPath) as! drinksCollectionViewCell
         
         cell.objDrinks = drinksList?[indexPath.row]
+        cell.drinksPrice.text = currencyFormat(currency: (drinksList?[indexPath.row].price)!)
         cell.tag = indexPath.row
         cell.clickComplition = { (count, index) in
             

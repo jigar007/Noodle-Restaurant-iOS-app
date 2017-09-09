@@ -19,3 +19,16 @@ extension UICollectionViewCell {
         self.backgroundColor = UIColor.white
     }
 }
+
+extension UIViewController{
+    func currencyFormat(currency:Int) -> String {
+        // Currency formatter
+        let formatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.decimal
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale(identifier: "DE")
+        return "RP "+String(describing: formatter.string(from: currency as NSNumber)!)
+    }
+
+
+}

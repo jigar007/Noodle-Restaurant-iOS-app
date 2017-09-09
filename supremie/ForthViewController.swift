@@ -72,6 +72,8 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
         cell.objTopping = toppingList[indexPath.row]
         cell.tag = indexPath.row
+        cell.toppingPrice.text = currencyFormat(currency: toppingList[indexPath.row].price)
+        
         cell.clickComplition = { (count, index) in
             if (count == 0){
                 self.toppingsButton.backgroundColor = UIColor(red: 146/255, green: 148/255, blue: 151/255, alpha: 1.0)

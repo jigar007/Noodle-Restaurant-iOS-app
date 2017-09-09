@@ -12,6 +12,7 @@ class drinksCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var drinksPicture: UIImageView!
     @IBOutlet weak var drinksName: UILabel!
     @IBOutlet weak var drinksQunatity: UILabel!
+    @IBOutlet weak var drinksPrice: UILabel!
     
     var clickComplition : ((_ totalCount:Int,_ cellIndex:Int) -> Void)? = nil
     

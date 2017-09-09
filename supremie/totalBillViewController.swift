@@ -14,8 +14,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     static var orderNumber:Int = 0
     var tableData:[SuperOfAll] = [SuperOfAll]()
     
-    // Currency formatter
-    let formatter = NumberFormatter()
+
     
     @IBOutlet weak var chililevel: UILabel!
     
@@ -36,11 +35,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        formatter.numberStyle = NumberFormatter.Style.decimal
-        formatter.numberStyle = .decimal
-        formatter.locale = Locale(identifier: "DE")
-        
-        let obj:SuperOfAll = SuperOfAll()
+         let obj:SuperOfAll = SuperOfAll()
         obj.name = (SelectedModel.sharedInstant.selectedMie?.flavour)!
         
         obj.qty = (SelectedModel.sharedInstant.selectedMie?.count)!
@@ -73,9 +68,9 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         let Tax:Int = (sum * 15)/100
         
         finalTotalPrice = Tax + sum
-        self.tax.text = "RP "+String(describing: formatter.string(from: Tax as NSNumber)!)
-        self.totalSum.text = "RP "+String(describing: formatter.string(from: sum as NSNumber)!)
-        self.fianlTotalPrice.text = "RP "+String(describing: formatter.string(from: finalTotalPrice as NSNumber)!)
+        self.tax.text = currencyFormat(currency:Tax)
+        self.totalSum.text = currencyFormat(currency:sum)
+        self.fianlTotalPrice.text = currencyFormat(currency:finalTotalPrice)
         
         self.chililevel.text = "Pilih Level Pedas Level " + String(SelectedModel.sharedInstant.chilliLevel)
         
@@ -102,8 +97,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         
         cell.iteamName.text = tableData[indexPath.row].name
         cell.Qty.text = "Qty "+String(tableData[indexPath.row].qty)
-        cell.price.text = "RP "+String(describing: formatter.string(from: tableData[indexPath.row].price as NSNumber)!)
-        
+        cell.price.text = currencyFormat(currency: tableData[indexPath.row].price)
         return cell
         
     }

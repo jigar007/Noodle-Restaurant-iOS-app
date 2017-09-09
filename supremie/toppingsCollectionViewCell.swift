@@ -13,6 +13,7 @@ class toppingsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var toppingsPicture: UIImageView!
     @IBOutlet weak var toppingsName: UILabel!
     @IBOutlet weak var toppingsQuantity: UILabel!
+    @IBOutlet weak var toppingPrice: UILabel!
     
     var clickComplition : ((_ totalCount:Int,_ cellIndex:Int) -> Void)? = nil
     
