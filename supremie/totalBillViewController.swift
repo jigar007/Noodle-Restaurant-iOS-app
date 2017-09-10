@@ -46,10 +46,9 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         formatter.locale = Locale(identifier: "DE")
         
         
-        
         let obj:SuperOfAll = SuperOfAll()
         
-        obj.name = (tempItem?.flavour!)!
+        obj.name = (tempItem?.brand)!+" "+(tempItem?.flavour!)!
         obj.qty = (tempItem?.count)!
         obj.price = Int((tempItem?.price!)!) * Int((tempItem?.count)!)
         
@@ -57,7 +56,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         
         for topping in SelectedModel.sharedInstant.selectedToppings {
             let obj:SuperOfAll = SuperOfAll()
-            obj.name=topping.name
+            obj.name = topping.name
             obj.price = topping.price * topping.count
             obj.qty=topping.count
             tableData.append(obj)
