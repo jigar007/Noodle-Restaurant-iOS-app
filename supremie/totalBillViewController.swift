@@ -16,6 +16,13 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     let formatter = NumberFormatter()
     @IBOutlet weak var chililevel: UILabel!
     
+    let tempItem = InfoDetail.sharedInstant.objItem.mie.filter({ (drink) -> Bool in
+        if drink.count > 0 {
+            return true
+        }
+        return false
+    }).first
+    
     @IBOutlet weak var chilliPrice: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var totalSum: UILabel!
@@ -38,12 +45,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         formatter.numberStyle = .decimal
         formatter.locale = Locale(identifier: "DE")
         
-        let tempItem = InfoDetail.sharedInstant.objItem.mie.filter({ (drink) -> Bool in
-            if drink.count > 0 {
-                return true
-            }
-            return false
-        }).first
+        
         
         let obj:SuperOfAll = SuperOfAll()
         
@@ -122,8 +124,8 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         orderDict["dining_method"] = SelectedModel.sharedInstant.dining_method
         
         var mieDict = [String:Any]()
-        mieDict["id"] = SelectedModel.sharedInstant.selectedMie?.id
-        mieDict["quantity_mie"] = SelectedModel.sharedInstant.selectedMie?.count
+        mieDict["id"] = (tempItem?.id)!
+        mieDict["quantity_mie"] = (tempItem?.count)!
         mieDict["quantity_whole"] = "0" // Do not touch
         mieDict["price"] = SelectedModel.sharedInstant.selectedMie?.price
         mieDict["extra_chili"] = SelectedModel.sharedInstant.chilliLevel
