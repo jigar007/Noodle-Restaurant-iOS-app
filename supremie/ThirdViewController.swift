@@ -38,7 +38,7 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         
         // For Button and title in navigation bar
         navigationItem.hidesBackButton = true
-        self.title = "Pilih Rasa"
+        self.title = "PILIH RASA"
         let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
         navigationItem.leftBarButtonItem = backButton
 

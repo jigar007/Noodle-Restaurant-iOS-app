@@ -87,7 +87,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         self.chilliPrice.text = currencyFormat(currency:SelectedModel.sharedInstant.chilliPrice)
         
         // For Button and title in navigation bar
-        self.title = "Review Pesanan"
+        self.title = "REVIEW PESANAN"
         navigationItem.hidesBackButton = true
         let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
         navigationItem.leftBarButtonItem = backButton
