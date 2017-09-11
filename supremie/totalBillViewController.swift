@@ -14,6 +14,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     static var orderNumber:Int = 0
     var tableData:[SuperOfAll] = [SuperOfAll]()
     let formatter = NumberFormatter()
+    
     @IBOutlet weak var chililevel: UILabel!
     
     let tempItem = InfoDetail.sharedInstant.objItem.mie.filter({ (drink) -> Bool in
@@ -100,7 +101,18 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         return tableData.count
         
     }
-    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if editingStyle == .delete
+        {
+            tableData.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+    }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
