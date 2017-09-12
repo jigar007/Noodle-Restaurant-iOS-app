@@ -18,7 +18,8 @@ class noodleCollectionViewCell: UICollectionViewCell {
         didSet {
             noodleName.text = objCompany?.flavour
             if ((UIImage(named: (objCompany?.imgUrl)!)) != nil){
-                noodlePicture.image = UIImage(named: (objCompany?.imgUrl)!)
+                noodlePicture.image = UIImage(named: ((objCompany?.brand)!+"-"+(objCompany?.flavour)!).lowercased())
+                
             }else{
                 noodlePicture.image = UIImage(named: "Default")
             }

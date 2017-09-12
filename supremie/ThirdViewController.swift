@@ -36,6 +36,7 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // For Button and title in navigation bar
         navigationItem.hidesBackButton = true
         self.title = "PILIH RASA"
@@ -89,6 +90,9 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"noodleCell", for: indexPath) as! noodleCollectionViewCell
         
         cell.objCompany = flavourList[indexPath.row]
+        
+        print( ((cell.objCompany?.brand)!+"-"+(cell.objCompany?.flavour)!).lowercased())
+
         
         cell.tag = indexPath.row
         

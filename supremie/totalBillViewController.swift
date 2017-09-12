@@ -12,10 +12,10 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
 {
     var finalTotalPrice: Int = 0
     static var orderNumber:Int = 0
+    
     var tableData:[SuperOfAll] = [SuperOfAll]()
     let formatter = NumberFormatter()
     
-    @IBOutlet weak var chililevel: UILabel!
     
     let tempItem = InfoDetail.sharedInstant.objItem.mie.filter({ (drink) -> Bool in
         if drink.count > 0 {
@@ -23,8 +23,9 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         }
         return false
     }).first
+
+    @IBOutlet weak var serviceCharge: UILabel!
     
-    @IBOutlet weak var chilliPrice: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var totalSum: UILabel!
     @IBAction func cash(_ sender: Any) {
@@ -70,21 +71,28 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
             obj.qty=drink.count
             tableData.append(obj)
         }
+        let chilliobj:SuperOfAll = SuperOfAll()
+        chilliobj.name = "Level Pedas " + String(SelectedModel.sharedInstant.chilliLevel)
+        chilliobj.qty = 1
+        chilliobj.price = SelectedModel.sharedInstant.chilliPrice
+        tableData.append(chilliobj)
+        
         var sum:Int = 0
         for each in tableData
         {
             sum = sum + each.price
         }
         sum = sum + SelectedModel.sharedInstant.chilliPrice
-        let Tax:Int = (sum * 15)/100
         
+        let serviceCharge:Int = (sum * 5)/100
+        self.serviceCharge.text = currencyFormat(currency: serviceCharge)
+        
+        
+        let Tax:Int = (sum * 10)/100
         finalTotalPrice = Tax + sum
         self.tax.text = currencyFormat(currency:Tax)
         self.totalSum.text = currencyFormat(currency:sum)
         self.fianlTotalPrice.text = currencyFormat(currency:finalTotalPrice)
-        
-        self.chililevel.text = "Level Pedas " + String(SelectedModel.sharedInstant.chilliLevel)
-        self.chilliPrice.text = currencyFormat(currency:SelectedModel.sharedInstant.chilliPrice)
         
         // For Button and title in navigation bar
         self.title = "REVIEW PESANAN"
