@@ -11,7 +11,7 @@ import UIKit
 class chilliViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource  {
     
     var noodleList = ["RP 0\nLEVEL 0 (TANPA BUBUK CABAI DIDALAM PACKAGING)","RP 0\nLEVEL 1 (HANYA BUBUK CABAI DIDALAM PACKAGING)","RP 1000\nLEVEL 2 (BUBUK CABAI DIDALAM PACKAGING + 5 CABAI RAWIT)","RP 2000\nLEVEL 3 (BUBUK CABAI DIDALAM PACKAGING + 20 CABAI RAWIT)"]
-    var pictureList =  ["Level-0","Level-1","Level-2","Level-3"]
+    var pictureList =  ["level-0","level-1","level-2","level-3"]
     var chilipriceList = [0,0,1000,2000]
     var selectedIndexPath:Int = 0
     var selectedCount:Int = 0

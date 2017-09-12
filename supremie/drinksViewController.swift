@@ -37,7 +37,6 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8
         drinksCiewController.collectionViewLayout = layout
-        drinksButton.isUserInteractionEnabled = false
     }
     
     override func onClcikBack() {
@@ -60,6 +59,9 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         cell.objDrinks = drinksList?[indexPath.row]
         cell.drinksPrice.text = currencyFormat(currency: (drinksList?[indexPath.row].price)!)
         cell.tag = indexPath.row
+        
+//        print(((cell.objTopping?.brand)!).lowercased())
+
         cell.clickComplition = { (count, index) in
             
             if (count == 0){
@@ -67,7 +69,6 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
             }else{
                 self.drinksButton.backgroundColor = UIColor(red: 227/255, green: 41/255, blue: 48/255, alpha: 1.0)
             }
-            self.enableDisableNextButton()
         }
         return cell
     }
@@ -78,26 +79,11 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         cell?.increnmentValue()
     }
 
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "drinksToBills" {
             SelectedModel.sharedInstant.selectedDrinks = (drinksList?.filter({ (drink) -> Bool in
                 return drink.count > 0
             }))!
         }
-    }
-
-    func enableDisableNextButton()  {
-        let tempList = drinksList?.filter { (drink) -> Bool in
-            return drink.count > 0
-        }
-        
-        guard (tempList?.count)! > 0 else {
-            drinksButton.isUserInteractionEnabled = false
-            drinksButton.backgroundColor = UIColor.gray
-            return
-        }
-        drinksButton.backgroundColor = UIColor.red
-        drinksButton.isUserInteractionEnabled = true
     }
 }

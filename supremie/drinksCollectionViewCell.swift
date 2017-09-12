@@ -18,8 +18,8 @@ class drinksCollectionViewCell: UICollectionViewCell {
     
     var objDrinks : Drink? {
         didSet {
-            if ((UIImage(named: (objDrinks?.imgUrl)!)) != nil){
-                drinksPicture.image = UIImage(named: (objDrinks?.imgUrl)!)
+            if ((UIImage(named: ((objDrinks?.brand)!).lowercased())) != nil){
+                drinksPicture.image = UIImage(named: ((objDrinks?.brand)!).lowercased())
             }else{
                 drinksPicture.image = UIImage(named: "Default")
             }

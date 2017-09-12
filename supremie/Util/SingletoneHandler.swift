@@ -26,11 +26,10 @@ class InfoDetail {
 
 class SelectedModel {
     static let sharedInstant: SelectedModel = SelectedModel()
-    
     var selectedMie: Drink?
     var selectedToppings = [Topping]()
-    
     var selectedDrinks = [Drink]()
+    
     var dining_method:String = ""
     
     var chilliLevel = 0
@@ -39,8 +38,11 @@ class SelectedModel {
 }
 
 class SuperOfAll{
-//    static let SuperOfAll: tablePrint = SuperOfAll()
+    
+    var id: Int = 0
+    var type:String = ""
     var name: String = ""
     var qty:Int = 0
     var price:Int = 0
+    var chilliLevel:Int = 0
 }

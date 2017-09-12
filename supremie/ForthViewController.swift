@@ -45,7 +45,6 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8
         toppingsCollectionView.collectionViewLayout = layout
-        toppingsButton.isUserInteractionEnabled = false
     }
     
     
@@ -71,13 +70,14 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         cell.tag = indexPath.row
         cell.toppingPrice.text = currencyFormat(currency: toppingList[indexPath.row].price)
         
+        print(((cell.objTopping?.name)!).lowercased())
+        
         cell.clickComplition = { (count, index) in
             if (count == 0){
                 self.toppingsButton.backgroundColor = UIColor(red: 146/255, green: 148/255, blue: 151/255, alpha: 1.0)
             }else{
                 self.toppingsButton.backgroundColor = UIColor(red: 227/255, green: 41/255, blue: 48/255, alpha: 1.0)
             }
-            self.enableDisbleButton()
         }
         return cell
     }
@@ -88,14 +88,4 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         cell?.increnmentValue()
     }
     
-    func enableDisbleButton()  {
-        let tempList = toppingList.filter { (topping) -> Bool in
-            return topping.count > 0
-        }
-        guard tempList.count > 0 else {
-            toppingsButton.isUserInteractionEnabled = false
-            return
-        }
-        toppingsButton.isUserInteractionEnabled = true
-    }
 }

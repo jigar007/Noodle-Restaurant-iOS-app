@@ -17,7 +17,8 @@ class noodleCollectionViewCell: UICollectionViewCell {
     var objCompany : Drink? {
         didSet {
             noodleName.text = objCompany?.flavour
-            if ((UIImage(named: (objCompany?.imgUrl)!)) != nil){
+
+            if ((UIImage(named: ((objCompany?.brand)!+"-"+(objCompany?.flavour)!).lowercased())) != nil){
                 noodlePicture.image = UIImage(named: ((objCompany?.brand)!+"-"+(objCompany?.flavour)!).lowercased())
                 
             }else{

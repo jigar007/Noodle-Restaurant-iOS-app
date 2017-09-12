@@ -19,8 +19,8 @@ class toppingsCollectionViewCell: UICollectionViewCell {
     
     var objTopping:Topping? {
         didSet {
-            if ((UIImage(named: (objTopping?.imgUrl)!)) != nil){
-                toppingsPicture.image = UIImage(named: (objTopping?.imgUrl)!)
+            if ((UIImage(named: ((objTopping?.name)!).lowercased())) != nil){
+                toppingsPicture.image = UIImage(named: ((objTopping?.name)!).lowercased())
             }else{
                 toppingsPicture.image = UIImage(named: "Default")
             }

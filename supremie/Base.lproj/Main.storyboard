@@ -877,7 +877,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjS-Pe-R8u">
-                                                            <rect key="frame" x="344" y="0.0" width="80" height="50"/>
+                                                            <rect key="frame" x="472" y="0.0" width="80" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="80" id="WhG-Ph-MfC"/>
                                                             </constraints>
@@ -898,9 +898,12 @@
                                                             <rect key="frame" x="710" y="10" width="27" height="29"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" title="Button" image="cancelButton"/>
+                                                            <connections>
+                                                                <action selector="cancelButton:" destination="R0f-9d-mjj" eventType="touchUpInside" id="cVi-Hk-BGI"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RP" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfB-kP-wDV">
-                                                            <rect key="frame" x="472" y="-1" width="218" height="50"/>
+                                                            <rect key="frame" x="728" y="-1" width="218" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="218" id="awN-f9-izi"/>
                                                             </constraints>
@@ -923,6 +926,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="Qty" destination="sjS-Pe-R8u" id="dqG-jv-QMm"/>
+                                                    <outlet property="cancelBtn" destination="cBL-HF-6Cu" id="ZOp-XQ-ClQ"/>
                                                     <outlet property="iteamName" destination="4Ap-eQ-e5O" id="nBs-7i-som"/>
                                                     <outlet property="price" destination="OfB-kP-wDV" id="s5N-Kb-Evn"/>
                                                 </connections>
