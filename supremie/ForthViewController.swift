@@ -27,10 +27,7 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         
         // For Button and title in navigation bar
-        self.title = "PILIH TOPPING"
-        navigationItem.hidesBackButton = true
-        let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
-        navigationItem.leftBarButtonItem = backButton
+        navigationBar(title: "PILIH TOPPING")
         
         // For making collection view device independent
         var screenSize: CGRect!
@@ -52,7 +49,7 @@ class ForthViewController: UIViewController,UICollectionViewDelegate, UICollecti
     }
     
     
-    func onClcikBack() {
+    override func onClcikBack() {
         SelectedModel.sharedInstant.selectedToppings = [Topping]()
         InfoDetail.sharedInstant.objItem.toppings = InfoDetail.sharedInstant.objItem.toppings.map({ (object) -> Topping in
             object.count = 0

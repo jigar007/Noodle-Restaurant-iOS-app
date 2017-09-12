@@ -19,10 +19,7 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         super.viewDidLoad()
         
         // For Button and title in navigation bar
-        self.title = "PILIH MINUMAN"
-        navigationItem.hidesBackButton = true
-        let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
-        navigationItem.leftBarButtonItem = backButton
+        navigationBar(title:"PILIH MINUMAN")
 
         // For making collection view device independent
         var screenSize: CGRect!
@@ -43,7 +40,7 @@ class drinksViewController: UIViewController,UICollectionViewDelegate, UICollect
         drinksButton.isUserInteractionEnabled = false
     }
     
-    func onClcikBack() {
+    override func onClcikBack() {
         InfoDetail.sharedInstant.objItem.drinks = InfoDetail.sharedInstant.objItem.drinks.map({ (object) -> Drink in
             object.count = 0
             return object

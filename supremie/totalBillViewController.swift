@@ -43,10 +43,12 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // For Button and title in navigation bar
+        navigationBar(title: "REVIEW PESANAN")
+        
         formatter.numberStyle = NumberFormatter.Style.decimal
         formatter.numberStyle = .decimal
         formatter.locale = Locale(identifier: "DE")
-        
         
         let obj:SuperOfAll = SuperOfAll()
         
@@ -94,14 +96,8 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
         self.totalSum.text = currencyFormat(currency:sum)
         self.fianlTotalPrice.text = currencyFormat(currency:finalTotalPrice)
         
-        // For Button and title in navigation bar
-        self.title = "REVIEW PESANAN"
-        navigationItem.hidesBackButton = true
-        let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
-        navigationItem.leftBarButtonItem = backButton
-        
     }
-    func onClcikBack() {
+    override func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
     

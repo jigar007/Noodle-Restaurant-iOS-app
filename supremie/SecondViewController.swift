@@ -20,40 +20,25 @@ class SecondViewController: UIViewController,UICollectionViewDelegate, UICollect
         super.viewDidLoad()
         
         filterArray()
-                
-        // For Button and title in navigation bar
-        self.title = "PILIH MIE INSTAN"
         
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-        
-        self.navigationController?.navigationBar.barTintColor = UIColor.red
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 100.0)
-        
-        navigationItem.hidesBackButton = true
-        let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
-        navigationItem.leftBarButtonItem = backButton
+        // For setting navigation bar items
+        navigationBar(title: "PILIH MIE INSTAN")
         
         // For making collection view device independent
-        var screenSize: CGRect!
-        var screenWidth: CGFloat!
-        var screenHeight: CGFloat!
-        
-        screenSize = UIScreen.main.bounds
-        screenWidth = screenSize.width
-        screenHeight = screenSize.height
+        let screenSize: CGRect =  UIScreen.main.bounds
+        let screenWidth: CGFloat = screenSize.width
+        let screenHeight: CGFloat = screenSize.height
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 4, bottom: 8, right: 4)
         layout.itemSize = CGSize(width: (screenWidth/2)-8, height: (screenHeight/3)-40)
-        
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8
         companyList.collectionViewLayout = layout
         
     }
     
-    func onClcikBack() {
+    override func onClcikBack() {
         SelectedModel.sharedInstant.selectedMie = nil
         _ = self.navigationController?.popViewController(animated: true)
     }

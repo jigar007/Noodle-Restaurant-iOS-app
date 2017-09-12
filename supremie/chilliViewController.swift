@@ -22,10 +22,7 @@ class chilliViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         super.viewDidLoad()
         // For Button and title in navigation bar
-        self.title = "PILIH LEVEL PEDAS"
-        navigationItem.hidesBackButton = true
-        let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
-        navigationItem.leftBarButtonItem = backButton
+        navigationBar(title: "PILIH LEVEL PEDAS")
 
         // For making collection view device independent
         var screenSize: CGRect!
@@ -46,7 +43,7 @@ class chilliViewController: UIViewController,UICollectionViewDelegate, UICollect
     }
     
     
-    func onClcikBack() {
+    override func onClcikBack() {
         _ = self.navigationController?.popViewController(animated: true)
     }
     

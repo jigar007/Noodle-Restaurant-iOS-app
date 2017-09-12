@@ -36,14 +36,9 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // For Button and title in navigation bar
-        navigationItem.hidesBackButton = true
-        self.title = "PILIH RASA"
-        let backButton = UIBarButtonItem(title: "< Kembali", style: UIBarButtonItemStyle.plain, target: self, action: #selector(onClcikBack))
-        navigationItem.leftBarButtonItem = backButton
+        // For setting navigation bar items
+        navigationBar(title: "PILIH RASA")
 
-    
         // For making collection view device independent
         var screenSize: CGRect!
         var screenWidth: CGFloat!
@@ -67,7 +62,7 @@ class ThirdViewController: UIViewController,UICollectionViewDelegate, UICollecti
         super.viewWillDisappear(animated)
     }
     
-    func onClcikBack() {
+    override func onClcikBack() {
         SelectedModel.sharedInstant.selectedMie = nil
         InfoDetail.sharedInstant.objItem.mie = InfoDetail.sharedInstant.objItem.mie.map { (object) -> Drink in
             object.count = 0
