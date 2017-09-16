@@ -185,7 +185,7 @@ class totalBillViewController: UIViewController, UITableViewDataSource,UITableVi
     
     func requestToPay(params:[String:Any]) {
         
-        var request = URLRequest(url: URL(string: "http://139.59.96.68:8000/orders/")!)
+        var request = URLRequest(url: URL(string: "http://192.168.0.100:80/orders")!)
         request.httpMethod = "POST"
         do {
             let bodyData = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)

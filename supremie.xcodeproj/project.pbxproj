@@ -263,7 +263,7 @@
 				TargetAttributes = {
 					25636F881F592C3700A0E3A1 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 5UK365CPLH;
+						DevelopmentTeam = 352555W2A2;
 						ProvisioningStyle = Automatic;
 					};
 					25636F9C1F592C3700A0E3A1 = {
@@ -505,7 +505,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5UK365CPLH;
+				DEVELOPMENT_TEAM = 352555W2A2;
 				INFOPLIST_FILE = supremie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jigarthakkar.supremie;
@@ -518,7 +518,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5UK365CPLH;
+				DEVELOPMENT_TEAM = 352555W2A2;
 				INFOPLIST_FILE = supremie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jigarthakkar.supremie;
