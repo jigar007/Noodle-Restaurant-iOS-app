@@ -24,7 +24,7 @@ class drinksCollectionViewCell: UICollectionViewCell {
                 drinksPicture.image = UIImage(named: "Default")
             }
             
-            drinksName.text =  (objDrinks?.brand)!+" "+(objDrinks?.flavour)!
+            drinksName.text =  (objDrinks?.brand)!//+" "+(objDrinks?.flavour)!
             drinksQunatity.text = String(describing: objDrinks!.count)
             manageBackGroundColor()
         }
