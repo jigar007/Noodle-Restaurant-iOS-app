@@ -20,8 +20,8 @@ class FirstViewController: UIViewController {
         navigationItem.backBarButtonItem = backButton
         UINavigationBar.appearance().tintColor = UIColor.white
         
-//        let url = URL(string: "http://192.168.0.100:80/stock")
-        let url = URL(string: "http://139.59.96.68:8000/stock")
+        let url = URL(string: "http://192.168.0.100:80/stock")
+//        let url = URL(string: "http://139.59.96.68:8000/stock")
         disableButton()
         URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
             guard let data = data, error == nil else { return }
