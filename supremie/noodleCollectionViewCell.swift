@@ -10,6 +10,7 @@ import UIKit
 
 class noodleCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var imageStock: UIImageView!
     @IBOutlet weak var noodlePicture: UIImageView!
     @IBOutlet weak var noodleName: UILabel!
     @IBOutlet weak var noodleQunatity: UILabel!
@@ -26,6 +27,7 @@ class noodleCollectionViewCell: UICollectionViewCell {
             }
             noodleQunatity.text = String(describing: objCompany!.count)
             manageBackGroundColor()
+            manageStock()
         }
     }
     
@@ -82,6 +84,16 @@ class noodleCollectionViewCell: UICollectionViewCell {
             makeHilighted()
         } else {
             makeNormal()
+        }
+    }
+    
+    private func manageStock() {
+        if (objCompany?.stock)! > 0 {
+            imageStock.isHidden = true
+            self.isUserInteractionEnabled = true
+        } else {
+            imageStock.isHidden = false
+            self.isUserInteractionEnabled = false
         }
     }
 }
