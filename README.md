@@ -1,4 +1,5 @@
 # Noodle-Restaurant-iOS-app
 
-
-<img src="https://github.com/thakkarj/SafeDrive/blob/master/home.png" width="170" height="302">
+<b>
+<img src="https://github.com/jigar007/Noodle-Restaurant-iOS-app/blob/master/Final_Screenshots/1.PNG" width="192" height="256">
+</b>
