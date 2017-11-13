@@ -41,7 +41,7 @@ extension UIViewController{
         self.navigationItem.titleView = tlabel
         
         let titleDict: NSDictionary = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+//        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
         self.navigationController?.navigationBar.barTintColor = UIColor.red
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 100.0)
