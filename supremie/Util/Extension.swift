@@ -40,7 +40,7 @@ extension UIViewController{
         tlabel.adjustsFontSizeToFitWidth = true
         self.navigationItem.titleView = tlabel
         
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
+        let titleDict: NSDictionary = [NSAttributedStringKey.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
         self.navigationController?.navigationBar.barTintColor = UIColor.red
@@ -51,10 +51,10 @@ extension UIViewController{
         backButton.accessibilityFrame = CGRect(x: 0, y: 0, width: 50, height: 50)
         let customFont = UIFont(name: "Helvetica", size: 25.0)!
         
-        backButton.setTitleTextAttributes([NSFontAttributeName: customFont], for: .normal)
+        backButton.setTitleTextAttributes([NSAttributedStringKey.font: customFont], for: .normal)
         navigationItem.leftBarButtonItem = backButton
     }
-    func onClcikBack() {
+    @objc func onClcikBack() {
     }
     
 }
