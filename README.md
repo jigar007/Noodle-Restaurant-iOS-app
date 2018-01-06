@@ -6,7 +6,7 @@
 
 <br>
 <b align="center">
-<img src="https://github.com/jigar007/Noodle-Restaurant-iOS-app/blob/master/Final_Screenshots/google_result.png" width="463" height="310" > <img src="https://github.com/jigar007/Noodle-Restaurant-iOS-app/blob/master/Final_Screenshots/all.gif" width="192" height="256">
+<img src="https://github.com/jigar007/Noodle-Restaurant-iOS-app/blob/master/Final_Screenshots/google_result.png" width="463" height="310" > <img src="https://github.com/jigar007/Noodle-Restaurant-iOS-app/blob/master/Final_Screenshots/all.gif" width="192" height="310">
 </b>
 <br>
 
