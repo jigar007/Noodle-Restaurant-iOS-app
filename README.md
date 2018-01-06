@@ -1,14 +1,13 @@
 # Noodle-Restaurant-iOS-app
 
 
-<img src="https://github.com/jigar007/Noodle-Restaurant-iOS-app/blob/master/Final_Screenshots/google_result.png" width="463" height="310" >  
 <a href="https://www.zomato.com/jakarta/supremie-kebon-jeruk/menu"> Click here to check Menu app at Zomato  </a>
 <br>
 
 <br>
 <b align="center">
 <div style="text-align:center">
-<img src="https://github.com/jigar007/Noodle-Restaurant-iOS-app/blob/master/Final_Screenshots/all.gif" width="192" height="256" align="middle">
+<img src="https://github.com/jigar007/Noodle-Restaurant-iOS-app/blob/master/Final_Screenshots/google_result.png" width="463" height="310" > <img src="https://github.com/jigar007/Noodle-Restaurant-iOS-app/blob/master/Final_Screenshots/all.gif" width="192" height="256" align="middle">
 </div>
 </b>
 <br>
