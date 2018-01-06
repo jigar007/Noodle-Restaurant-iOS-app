@@ -1,5 +1,6 @@
 # Noodle-Restaurant-iOS-app
 
+<center>Centered text</center>
 <a href="https://www.zomato.com/jakarta/supremie-kebon-jeruk/menu">Zomato Menu</a>
 
 <b align="center">
