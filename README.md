@@ -2,7 +2,6 @@
 
 
 <img src="https://github.com/jigar007/Noodle-Restaurant-iOS-app/blob/master/Final_Screenshots/google_result.png" width="463" height="310" >  
-<br>
 <a href="https://www.zomato.com/jakarta/supremie-kebon-jeruk/menu"> Click here to check Menu app at Zomato  </a>
 <br>
 
